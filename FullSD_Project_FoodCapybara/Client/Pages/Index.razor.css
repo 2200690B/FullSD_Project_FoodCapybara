@@ -1,0 +1,16 @@
+﻿.img-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.img-style {
+    width: auto;
+    max-width: auto;
+}
+
+h1{
+    color: white;
+    text-align: center;
+    font-family: Georgia;
+}
