@@ -7,7 +7,7 @@
 namespace FullSD_Project_FoodCapybara.Server.Migrations
 {
     /// <inheritdoc />
-    public partial class AddedDefaultUsers : Migration
+    public partial class DataSeeding : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -27,8 +27,17 @@ namespace FullSD_Project_FoodCapybara.Server.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "3700efa7-66dc-47f0-860f-e506d04102e4", 0, "2b9fa891-8770-4fe4-a728-a39827668af5", "staff@localhost.com", false, "Staff", "User", false, null, "STAFF@LOCALHOST.COM", "STAFF@LOCALHOST.COM", "AQAAAAIAAYagAAAAEMV3TAhGE85pYf+iUTblOlODFmGecQElCIOt5Q3RZgeOkhA04gO0HaaXpB2c5H1c/w==", null, false, "719e83f6-2fee-4109-9418-010b927b8b52", false, "staff@localhost.com" },
-                    { "3781efa7-66dc-47f0-860f-e506d04102e4", 0, "13d14c97-16a8-4475-92d8-13e1e7882c7c", "admin@localhost.com", false, "Admin", "User", false, null, "ADMIN@LOCALHOST.COM", "ADMIN@LOCALHOST.COM", "AQAAAAIAAYagAAAAEGQnZ3dprLSIAYImy0oGJEV3oE/v6gLUEuNb8ApjfVOFhIJov/nhQsgrLzv6B1ZCwQ==", null, false, "29ad0870-d3b0-466e-a968-400db839d5cc", false, "admin@localhost.com" }
+                    { "3700efa7-66dc-47f0-860f-e506d04102e4", 0, "d2f0c1b1-2780-4311-bb6e-d53f695efb25", "staff@localhost.com", false, "Staff", "User", false, null, "STAFF@LOCALHOST.COM", "STAFF@LOCALHOST.COM", "AQAAAAIAAYagAAAAELBDBnZPb2B6AgyfTJQ4ruMEw77xP1ABgzFuu4sJB+2TaIoxUF3kCTvHSw2y0Z/dMw==", null, false, "b24a33f6-81d9-44ce-9703-e400a3b7b79c", false, "staff@localhost.com" },
+                    { "3781efa7-66dc-47f0-860f-e506d04102e4", 0, "211c4243-ba2b-4881-8e1f-ae8cdfde2cb8", "admin@localhost.com", false, "Admin", "User", false, null, "ADMIN@LOCALHOST.COM", "ADMIN@LOCALHOST.COM", "AQAAAAIAAYagAAAAEIxiZ7AooMvxYuOs50Ipj2HUeFjcU5j1m38H61lNbim3Ae0JzirTcd4aHnzR7lhTRg==", null, false, "793aaa68-6766-4065-91d7-7dd08ab5f9a9", false, "admin@localhost.com" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Restaurants",
+                columns: new[] { "Id", "RestAddress", "RestCategory", "RestDescription", "RestName" },
+                values: new object[,]
+                {
+                    { 1, "TastyVille Street 69 Papa's Mall #01-123", "Fast Food", "Be it for delivery or takeaway from the nearest Papa's pizzeria outlet, we have pizza makers ready to make fresh and hot pizzas to satisfy your cravings.  Enjoy freshly made and oven-baked pizzas by Papa's Pizzeria!", "Papa's Pizzeria" },
+                    { 2, "TastyVille Street 69 Papa's Mall #01-124", "Bakeries", "Experience the art of baking at Papa's Bakeria, where each pastry is crafted with passion and expertise. Indulge in our delightful cakes, fresh bread, and savory pastries, we guarantee a journey of exquisite flavors and quality ingredients! Enjoy the warmth of our ovens as we bring you the finest baked goods in TastyVille.", "Papa's Bakeria" }
                 });
 
             migrationBuilder.InsertData(
@@ -58,6 +67,16 @@ namespace FullSD_Project_FoodCapybara.Server.Migrations
                 table: "AspNetUserRoles",
                 keyColumns: new[] { "RoleId", "UserId" },
                 keyValues: new object[] { "adminGUID-20db-474f-8407-5a6b159518ba", "3781efa7-66dc-47f0-860f-e506d04102e4" });
+
+            migrationBuilder.DeleteData(
+                table: "Restaurants",
+                keyColumn: "Id",
+                keyValue: 1);
+
+            migrationBuilder.DeleteData(
+                table: "Restaurants",
+                keyColumn: "Id",
+                keyValue: 2);
 
             migrationBuilder.DeleteData(
                 table: "AspNetRoles",

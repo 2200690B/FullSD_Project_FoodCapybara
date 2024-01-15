@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore;
 
-namespace FullSD_Project_FoodCapybara.Server.Configuration.Entities
+namespace FullSD_Project_FoodCapybara.Server.Configuration.Entities.User
 {
     public class UserRoleSeedConfiguration : IEntityTypeConfiguration<IdentityUserRole<string>>
     {

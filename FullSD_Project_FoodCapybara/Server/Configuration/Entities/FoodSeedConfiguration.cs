@@ -33,9 +33,35 @@ namespace FullSD_Project_FoodCapybara.Server.Configuration.Entities
                     FoodRating = 4,
                     FoodDesc = "Pizza with pepperoni and cheese.",
                     FoodCost = 14.99m
+                },
+                new Food
+                {
+                    Id = 3,
+                    RestId = 1, // Foreign key linking to the Restaurant with Id = 1
+                    FoodName = "Garlic Breadsticks",
+                    FoodRating = 4,
+                    FoodDesc = "Crispy breadsticks with garlic butter.",
+                    FoodCost = 7.99m
+                },
+                new Food
+                {
+                    Id = 4,
+                    RestId = 1, // Foreign key linking to the Restaurant with Id = 1
+                    FoodName = "Soda",
+                    FoodRating = 3,
+                    FoodDesc = "Classic carbonated beverage.",
+                    FoodCost = 2.49m
+                },
+                new Food
+                {
+                    Id = 5,
+                    RestId = 1, // Foreign key linking to the Restaurant with Id = 1
+                    FoodName = "Iced Tea",
+                    FoodRating = 3,
+                    FoodDesc = "Refreshing iced tea.",
+                    FoodCost = 1.99m
                 }
-                );
-
+            );
         }
 
         private void SeedRestaurant2Foods(EntityTypeBuilder<Food> builder)
@@ -58,6 +84,33 @@ namespace FullSD_Project_FoodCapybara.Server.Configuration.Entities
                     FoodRating = 5,
                     FoodDesc = "Soft and moist muffin bursting with juicy blueberries.",
                     FoodCost = 2.49m
+                },
+                new Food
+                {
+                    Id = 8,
+                    RestId = 2,
+                    FoodName = "Almond Croissant",
+                    FoodRating = 4,
+                    FoodDesc = "Classic croissant with a sweet almond filling and crunchy almonds on top.",
+                    FoodCost = 4.49m
+                },
+                new Food
+                {
+                    Id = 9,
+                    RestId = 2,
+                    FoodName = "Cinnamon Roll",
+                    FoodRating = 5,
+                    FoodDesc = "Spiraled pastry with layers of cinnamon sugar and topped with cream cheese icing.",
+                    FoodCost = 3.79m
+                },
+                new Food
+                {
+                    Id = 10,
+                    RestId = 2,
+                    FoodName = "Cheese Danish",
+                    FoodRating = 4,
+                    FoodDesc = "Delicate pastry filled with sweet cream cheese filling.",
+                    FoodCost = 3.29m
                 }
         );
         }

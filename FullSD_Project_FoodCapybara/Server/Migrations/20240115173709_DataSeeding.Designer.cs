@@ -4,6 +4,7 @@ using FullSD_Project_FoodCapybara.Server.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FullSD_Project_FoodCapybara.Server.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240115173709_DataSeeding")]
+    partial class DataSeeding
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -238,7 +241,7 @@ namespace FullSD_Project_FoodCapybara.Server.Migrations
                         {
                             Id = "3781efa7-66dc-47f0-860f-e506d04102e4",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "3b0608a7-36f3-433e-b3a1-d2d82a11e391",
+                            ConcurrencyStamp = "211c4243-ba2b-4881-8e1f-ae8cdfde2cb8",
                             Email = "admin@localhost.com",
                             EmailConfirmed = false,
                             FirstName = "Admin",
@@ -246,9 +249,9 @@ namespace FullSD_Project_FoodCapybara.Server.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@LOCALHOST.COM",
                             NormalizedUserName = "ADMIN@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEGMwIcwu7wM9AvxgL9PxQzOInzOy21Zf3xj8jMFQ0wc/U+6fNxO4gU7OrQSKtPDfQw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEIxiZ7AooMvxYuOs50Ipj2HUeFjcU5j1m38H61lNbim3Ae0JzirTcd4aHnzR7lhTRg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "c1d74e4d-4f62-4af5-872a-f2d717ef079b",
+                            SecurityStamp = "793aaa68-6766-4065-91d7-7dd08ab5f9a9",
                             TwoFactorEnabled = false,
                             UserName = "admin@localhost.com"
                         },
@@ -256,7 +259,7 @@ namespace FullSD_Project_FoodCapybara.Server.Migrations
                         {
                             Id = "3700efa7-66dc-47f0-860f-e506d04102e4",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "5c4f79b6-46ca-49a7-928c-64ad61e8f597",
+                            ConcurrencyStamp = "d2f0c1b1-2780-4311-bb6e-d53f695efb25",
                             Email = "staff@localhost.com",
                             EmailConfirmed = false,
                             FirstName = "Staff",
@@ -264,9 +267,9 @@ namespace FullSD_Project_FoodCapybara.Server.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "STAFF@LOCALHOST.COM",
                             NormalizedUserName = "STAFF@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEABdX08d56JR0+7i9j3DRlUbPKz2FOUnN6WZ2hDt5T38/z+XwC66afFmTV5KlIT2Mw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAELBDBnZPb2B6AgyfTJQ4ruMEw77xP1ABgzFuu4sJB+2TaIoxUF3kCTvHSw2y0Z/dMw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "d4a70a5a-2b17-4ce5-b6f6-12bd726ffa20",
+                            SecurityStamp = "b24a33f6-81d9-44ce-9703-e400a3b7b79c",
                             TwoFactorEnabled = false,
                             UserName = "staff@localhost.com"
                         });
@@ -331,98 +334,6 @@ namespace FullSD_Project_FoodCapybara.Server.Migrations
                     b.HasIndex("RestId");
 
                     b.ToTable("Foods");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            FoodCost = 12.99m,
-                            FoodDesc = "Classic pizza with tomato, mozzarella, and basil.",
-                            FoodName = "Margherita  Pizza",
-                            FoodRating = 5,
-                            RestId = 1
-                        },
-                        new
-                        {
-                            Id = 2,
-                            FoodCost = 14.99m,
-                            FoodDesc = "Pizza with pepperoni and cheese.",
-                            FoodName = "Pepperoni Pizza",
-                            FoodRating = 4,
-                            RestId = 1
-                        },
-                        new
-                        {
-                            Id = 3,
-                            FoodCost = 7.99m,
-                            FoodDesc = "Crispy breadsticks with garlic butter.",
-                            FoodName = "Garlic Breadsticks",
-                            FoodRating = 4,
-                            RestId = 1
-                        },
-                        new
-                        {
-                            Id = 4,
-                            FoodCost = 2.49m,
-                            FoodDesc = "Classic carbonated beverage.",
-                            FoodName = "Soda",
-                            FoodRating = 3,
-                            RestId = 1
-                        },
-                        new
-                        {
-                            Id = 5,
-                            FoodCost = 1.99m,
-                            FoodDesc = "Refreshing iced tea.",
-                            FoodName = "Iced Tea",
-                            FoodRating = 3,
-                            RestId = 1
-                        },
-                        new
-                        {
-                            Id = 6,
-                            FoodCost = 3.99m,
-                            FoodDesc = "A flaky and buttery croissant filled with rich chocolate.",
-                            FoodName = "Chocolate Croissant",
-                            FoodRating = 4,
-                            RestId = 2
-                        },
-                        new
-                        {
-                            Id = 7,
-                            FoodCost = 2.49m,
-                            FoodDesc = "Soft and moist muffin bursting with juicy blueberries.",
-                            FoodName = "Blueberry Muffin",
-                            FoodRating = 5,
-                            RestId = 2
-                        },
-                        new
-                        {
-                            Id = 8,
-                            FoodCost = 4.49m,
-                            FoodDesc = "Classic croissant with a sweet almond filling and crunchy almonds on top.",
-                            FoodName = "Almond Croissant",
-                            FoodRating = 4,
-                            RestId = 2
-                        },
-                        new
-                        {
-                            Id = 9,
-                            FoodCost = 3.79m,
-                            FoodDesc = "Spiraled pastry with layers of cinnamon sugar and topped with cream cheese icing.",
-                            FoodName = "Cinnamon Roll",
-                            FoodRating = 5,
-                            RestId = 2
-                        },
-                        new
-                        {
-                            Id = 10,
-                            FoodCost = 3.29m,
-                            FoodDesc = "Delicate pastry filled with sweet cream cheese filling.",
-                            FoodName = "Cheese Danish",
-                            FoodRating = 4,
-                            RestId = 2
-                        });
                 });
 
             modelBuilder.Entity("FullSD_Project_FoodCapybara.Shared.Domain.Order", b =>

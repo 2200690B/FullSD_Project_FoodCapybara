@@ -8,8 +8,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Configuration\Entities\FoodSeedConfiguration.cs" />
-    <Compile Remove="Configuration\Entities\RestaurantSeedConfiguration.cs" />
     <Compile Remove="Configuration\Entities\StaffSeedConfiguration.cs" />
   </ItemGroup>
 

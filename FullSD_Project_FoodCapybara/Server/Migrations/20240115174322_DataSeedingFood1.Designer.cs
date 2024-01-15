@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FullSD_Project_FoodCapybara.Server.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240115144010_AddedDefaultData")]
-    partial class AddedDefaultData
+    [Migration("20240115174322_DataSeedingFood1")]
+    partial class DataSeedingFood1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -235,6 +235,44 @@ namespace FullSD_Project_FoodCapybara.Server.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "3781efa7-66dc-47f0-860f-e506d04102e4",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "3b0608a7-36f3-433e-b3a1-d2d82a11e391",
+                            Email = "admin@localhost.com",
+                            EmailConfirmed = false,
+                            FirstName = "Admin",
+                            LastName = "User",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "ADMIN@LOCALHOST.COM",
+                            NormalizedUserName = "ADMIN@LOCALHOST.COM",
+                            PasswordHash = "AQAAAAIAAYagAAAAEGMwIcwu7wM9AvxgL9PxQzOInzOy21Zf3xj8jMFQ0wc/U+6fNxO4gU7OrQSKtPDfQw==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "c1d74e4d-4f62-4af5-872a-f2d717ef079b",
+                            TwoFactorEnabled = false,
+                            UserName = "admin@localhost.com"
+                        },
+                        new
+                        {
+                            Id = "3700efa7-66dc-47f0-860f-e506d04102e4",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "5c4f79b6-46ca-49a7-928c-64ad61e8f597",
+                            Email = "staff@localhost.com",
+                            EmailConfirmed = false,
+                            FirstName = "Staff",
+                            LastName = "User",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "STAFF@LOCALHOST.COM",
+                            NormalizedUserName = "STAFF@LOCALHOST.COM",
+                            PasswordHash = "AQAAAAIAAYagAAAAEABdX08d56JR0+7i9j3DRlUbPKz2FOUnN6WZ2hDt5T38/z+XwC66afFmTV5KlIT2Mw==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "d4a70a5a-2b17-4ce5-b6f6-12bd726ffa20",
+                            TwoFactorEnabled = false,
+                            UserName = "staff@localhost.com"
+                        });
                 });
 
             modelBuilder.Entity("FullSD_Project_FoodCapybara.Shared.Domain.Customer", b =>
@@ -291,14 +329,103 @@ namespace FullSD_Project_FoodCapybara.Server.Migrations
                     b.Property<int>("RestId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("RestaurantId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("RestaurantId");
+                    b.HasIndex("RestId");
 
                     b.ToTable("Foods");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            FoodCost = 12.99m,
+                            FoodDesc = "Classic pizza with tomato, mozzarella, and basil.",
+                            FoodName = "Margherita  Pizza",
+                            FoodRating = 5,
+                            RestId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            FoodCost = 14.99m,
+                            FoodDesc = "Pizza with pepperoni and cheese.",
+                            FoodName = "Pepperoni Pizza",
+                            FoodRating = 4,
+                            RestId = 1
+                        },
+                        new
+                        {
+                            Id = 3,
+                            FoodCost = 7.99m,
+                            FoodDesc = "Crispy breadsticks with garlic butter.",
+                            FoodName = "Garlic Breadsticks",
+                            FoodRating = 4,
+                            RestId = 1
+                        },
+                        new
+                        {
+                            Id = 4,
+                            FoodCost = 2.49m,
+                            FoodDesc = "Classic carbonated beverage.",
+                            FoodName = "Soda",
+                            FoodRating = 3,
+                            RestId = 1
+                        },
+                        new
+                        {
+                            Id = 5,
+                            FoodCost = 1.99m,
+                            FoodDesc = "Refreshing iced tea.",
+                            FoodName = "Iced Tea",
+                            FoodRating = 3,
+                            RestId = 1
+                        },
+                        new
+                        {
+                            Id = 6,
+                            FoodCost = 3.99m,
+                            FoodDesc = "A flaky and buttery croissant filled with rich chocolate.",
+                            FoodName = "Chocolate Croissant",
+                            FoodRating = 4,
+                            RestId = 2
+                        },
+                        new
+                        {
+                            Id = 7,
+                            FoodCost = 2.49m,
+                            FoodDesc = "Soft and moist muffin bursting with juicy blueberries.",
+                            FoodName = "Blueberry Muffin",
+                            FoodRating = 5,
+                            RestId = 2
+                        },
+                        new
+                        {
+                            Id = 8,
+                            FoodCost = 4.49m,
+                            FoodDesc = "Classic croissant with a sweet almond filling and crunchy almonds on top.",
+                            FoodName = "Almond Croissant",
+                            FoodRating = 4,
+                            RestId = 2
+                        },
+                        new
+                        {
+                            Id = 9,
+                            FoodCost = 3.79m,
+                            FoodDesc = "Spiraled pastry with layers of cinnamon sugar and topped with cream cheese icing.",
+                            FoodName = "Cinnamon Roll",
+                            FoodRating = 5,
+                            RestId = 2
+                        },
+                        new
+                        {
+                            Id = 10,
+                            FoodCost = 3.29m,
+                            FoodDesc = "Delicate pastry filled with sweet cream cheese filling.",
+                            FoodName = "Cheese Danish",
+                            FoodRating = 4,
+                            RestId = 2
+                        });
                 });
 
             modelBuilder.Entity("FullSD_Project_FoodCapybara.Shared.Domain.Order", b =>
@@ -412,6 +539,24 @@ namespace FullSD_Project_FoodCapybara.Server.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Restaurants");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            RestAddress = "TastyVille Street 69 Papa's Mall #01-123",
+                            RestCategory = "Fast Food",
+                            RestDescription = "Be it for delivery or takeaway from the nearest Papa's pizzeria outlet, we have pizza makers ready to make fresh and hot pizzas to satisfy your cravings.  Enjoy freshly made and oven-baked pizzas by Papa's Pizzeria!",
+                            RestName = "Papa's Pizzeria"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            RestAddress = "TastyVille Street 69 Papa's Mall #01-124",
+                            RestCategory = "Bakeries",
+                            RestDescription = "Experience the art of baking at Papa's Bakeria, where each pastry is crafted with passion and expertise. Indulge in our delightful cakes, fresh bread, and savory pastries, we guarantee a journey of exquisite flavors and quality ingredients! Enjoy the warmth of our ovens as we bring you the finest baked goods in TastyVille.",
+                            RestName = "Papa's Bakeria"
+                        });
                 });
 
             modelBuilder.Entity("FullSD_Project_FoodCapybara.Shared.Domain.Review", b =>
@@ -497,6 +642,26 @@ namespace FullSD_Project_FoodCapybara.Server.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "adminGUID-20db-474f-8407-5a6b159518ba",
+                            Name = "Administrator",
+                            NormalizedName = "ADMINISTRATOR"
+                        },
+                        new
+                        {
+                            Id = "staffGUID-20db-474f-8407-5a6b159518bb",
+                            Name = "Staff",
+                            NormalizedName = "STAFF"
+                        },
+                        new
+                        {
+                            Id = "userGUID-20db-474f-8407-5a6b159518bb",
+                            Name = "User",
+                            NormalizedName = "USER"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -586,6 +751,18 @@ namespace FullSD_Project_FoodCapybara.Server.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = "3781efa7-66dc-47f0-860f-e506d04102e4",
+                            RoleId = "adminGUID-20db-474f-8407-5a6b159518ba"
+                        },
+                        new
+                        {
+                            UserId = "3700efa7-66dc-47f0-860f-e506d04102e4",
+                            RoleId = "staffGUID-20db-474f-8407-5a6b159518bb"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
@@ -613,7 +790,9 @@ namespace FullSD_Project_FoodCapybara.Server.Migrations
                 {
                     b.HasOne("FullSD_Project_FoodCapybara.Shared.Domain.Restaurant", "Restaurant")
                         .WithMany("Menu")
-                        .HasForeignKey("RestaurantId");
+                        .HasForeignKey("RestId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Restaurant");
                 });

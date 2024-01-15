@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace FullSD_Project_FoodCapybara.Server.Migrations
 {
     /// <inheritdoc />
-    public partial class AddedDefaultData : Migration
+    public partial class database1 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -274,7 +274,6 @@ namespace FullSD_Project_FoodCapybara.Server.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     RestId = table.Column<int>(type: "int", nullable: false),
-                    RestaurantId = table.Column<int>(type: "int", nullable: true),
                     FoodName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     FoodRating = table.Column<int>(type: "int", nullable: false),
                     FoodDesc = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -284,10 +283,11 @@ namespace FullSD_Project_FoodCapybara.Server.Migrations
                 {
                     table.PrimaryKey("PK_Foods", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Foods_Restaurants_RestaurantId",
-                        column: x => x.RestaurantId,
+                        name: "FK_Foods_Restaurants_RestId",
+                        column: x => x.RestId,
                         principalTable: "Restaurants",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -441,9 +441,9 @@ namespace FullSD_Project_FoodCapybara.Server.Migrations
                 column: "Expiration");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Foods_RestaurantId",
+                name: "IX_Foods_RestId",
                 table: "Foods",
-                column: "RestaurantId");
+                column: "RestId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Keys_Use",

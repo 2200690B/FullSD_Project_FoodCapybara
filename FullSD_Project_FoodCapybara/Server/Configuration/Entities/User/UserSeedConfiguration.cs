@@ -3,8 +3,9 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore;
 
-namespace FullSD_Project_FoodCapybara.Server.Configuration.Entities
-{    public class UserSeedConfiguration : IEntityTypeConfiguration<ApplicationUser>
+namespace FullSD_Project_FoodCapybara.Server.Configuration.Entities.User
+{
+    public class UserSeedConfiguration : IEntityTypeConfiguration<ApplicationUser>
     {
         public void Configure(EntityTypeBuilder<ApplicationUser> builder)
         {

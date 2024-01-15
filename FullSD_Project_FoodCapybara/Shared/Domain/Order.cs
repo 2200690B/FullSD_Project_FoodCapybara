@@ -15,7 +15,7 @@ namespace FullSD_Project_FoodCapybara.Shared.Domain
         public decimal OrderPrice { get; set; }
         public DateTime OrderDate { get; set; }
         public string? OrderStatus { get; set; }
-        public virtual List<OrderItem>? OrderItems { get; set; }  //Order contains list of OrderItems
+        public virtual ICollection<OrderItem>? OrderItems { get; set; }  //Order contains list of OrderItems
     }
 }
 
