@@ -2,6 +2,11 @@ using FullSD_Project_FoodCapybara.Shared;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
+// Controllers has methods created so people can access your information
+// method contains Get, Post, Put, Delete etc.
+// also contains constuctor method
+
+
 namespace FullSD_Project_FoodCapybara.Server.Controllers
 {
     //[Authorize]
