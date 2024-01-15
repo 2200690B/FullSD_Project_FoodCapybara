@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34316.72
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FullSD_Project_FoodCapybara.Server", "FullSD_Project_FoodCapybara\Server\FullSD_Project_FoodCapybara.Server.csproj", "{28E5426F-D07D-4291-B35B-1249596E072F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FullSD_Project_FoodCapybara.Server", "FullSD_Project_FoodCapybara\Server\FullSD_Project_FoodCapybara.Server.csproj", "{28E5426F-D07D-4291-B35B-1249596E072F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FullSD_Project_FoodCapybara.Client", "FullSD_Project_FoodCapybara\Client\FullSD_Project_FoodCapybara.Client.csproj", "{4148D414-7D8D-44A6-9AE1-72A593A97480}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FullSD_Project_FoodCapybara.Client", "FullSD_Project_FoodCapybara\Client\FullSD_Project_FoodCapybara.Client.csproj", "{4148D414-7D8D-44A6-9AE1-72A593A97480}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FullSD_Project_FoodCapybara.Shared", "FullSD_Project_FoodCapybara\Shared\FullSD_Project_FoodCapybara.Shared.csproj", "{A668460E-F021-4BD9-B457-2B94DA9432FD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FullSD_Project_FoodCapybara.Shared", "FullSD_Project_FoodCapybara\Shared\FullSD_Project_FoodCapybara.Shared.csproj", "{A668460E-F021-4BD9-B457-2B94DA9432FD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
