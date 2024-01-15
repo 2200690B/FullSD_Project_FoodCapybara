@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace FullSD_Project_FoodCapybara.Shared.Domain
 {
-    public class Order
+    public class Order : BaseDomainModel
     {
-        public int Id { get; set; }
         public int CustId { get; set; }  //not needed but added to make it more explicit to know what id you are using
         public virtual Customer? Customer { get; set; } //acts as a constraint
         public int StaffId { get; set; }

@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
@@ -6,6 +6,12 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>FullSD_Project_FoodCapybara.Server-5071a9e1-8083-4905-bed1-d9953c52aa3c</UserSecretsId>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Configuration\Entities\FoodSeedConfiguration.cs" />
+    <Compile Remove="Configuration\Entities\RestaurantSeedConfiguration.cs" />
+    <Compile Remove="Configuration\Entities\StaffSeedConfiguration.cs" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="7.0.11" />
@@ -28,10 +34,6 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Configuration\Entities\" />
   </ItemGroup>
 
 </Project>

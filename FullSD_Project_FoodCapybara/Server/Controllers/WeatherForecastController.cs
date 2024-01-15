@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace FullSD_Project_FoodCapybara.Server.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [ApiController]
     [Route("[controller]")]
     public class WeatherForecastController : ControllerBase

@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace FullSD_Project_FoodCapybara.Shared.Domain
 {
-    public class Staff
+    public class Staff : BaseDomainModel
     {
-        public int Id { get; set; }
         public string? StaffUsername { get; set; }
         public string? StaffPassword { get; set; }
         public string? StaffEmail { get; set; }

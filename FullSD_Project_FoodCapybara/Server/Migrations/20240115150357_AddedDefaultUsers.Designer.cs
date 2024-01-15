@@ -9,11 +9,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace FullSD_Project_FoodCapybara.Server.Data.Migrations
+namespace FullSD_Project_FoodCapybara.Server.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240105075622_AddedNameToUser")]
-    partial class AddedNameToUser
+    [Migration("20240115150357_AddedDefaultUsers")]
+    partial class AddedDefaultUsers
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -235,6 +235,279 @@ namespace FullSD_Project_FoodCapybara.Server.Data.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "3781efa7-66dc-47f0-860f-e506d04102e4",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "13d14c97-16a8-4475-92d8-13e1e7882c7c",
+                            Email = "admin@localhost.com",
+                            EmailConfirmed = false,
+                            FirstName = "Admin",
+                            LastName = "User",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "ADMIN@LOCALHOST.COM",
+                            NormalizedUserName = "ADMIN@LOCALHOST.COM",
+                            PasswordHash = "AQAAAAIAAYagAAAAEGQnZ3dprLSIAYImy0oGJEV3oE/v6gLUEuNb8ApjfVOFhIJov/nhQsgrLzv6B1ZCwQ==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "29ad0870-d3b0-466e-a968-400db839d5cc",
+                            TwoFactorEnabled = false,
+                            UserName = "admin@localhost.com"
+                        },
+                        new
+                        {
+                            Id = "3700efa7-66dc-47f0-860f-e506d04102e4",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "2b9fa891-8770-4fe4-a728-a39827668af5",
+                            Email = "staff@localhost.com",
+                            EmailConfirmed = false,
+                            FirstName = "Staff",
+                            LastName = "User",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "STAFF@LOCALHOST.COM",
+                            NormalizedUserName = "STAFF@LOCALHOST.COM",
+                            PasswordHash = "AQAAAAIAAYagAAAAEMV3TAhGE85pYf+iUTblOlODFmGecQElCIOt5Q3RZgeOkhA04gO0HaaXpB2c5H1c/w==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "719e83f6-2fee-4109-9418-010b927b8b52",
+                            TwoFactorEnabled = false,
+                            UserName = "staff@localhost.com"
+                        });
+                });
+
+            modelBuilder.Entity("FullSD_Project_FoodCapybara.Shared.Domain.Customer", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("CustAddress")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CustEmail")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CustPassword")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("CustPayment")
+                        .HasColumnType("decimal(18, 2)");
+
+                    b.Property<int>("CustPhone")
+                        .HasColumnType("int");
+
+                    b.Property<string>("CustUsername")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Customers");
+                });
+
+            modelBuilder.Entity("FullSD_Project_FoodCapybara.Shared.Domain.Food", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<decimal>("FoodCost")
+                        .HasColumnType("decimal(18, 2)");
+
+                    b.Property<string>("FoodDesc")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FoodName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("FoodRating")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RestId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("RestaurantId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RestaurantId");
+
+                    b.ToTable("Foods");
+                });
+
+            modelBuilder.Entity("FullSD_Project_FoodCapybara.Shared.Domain.Order", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("CustId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("CustomerId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("OrderDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<decimal>("OrderPrice")
+                        .HasColumnType("decimal(18, 2)");
+
+                    b.Property<string>("OrderStatus")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("StaffId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CustomerId");
+
+                    b.HasIndex("StaffId");
+
+                    b.ToTable("Orders");
+                });
+
+            modelBuilder.Entity("FullSD_Project_FoodCapybara.Shared.Domain.OrderItem", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("FoodID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("OIQuantity")
+                        .HasColumnType("int");
+
+                    b.Property<int>("OrderId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FoodID");
+
+                    b.HasIndex("OrderId");
+
+                    b.ToTable("OrderItems");
+                });
+
+            modelBuilder.Entity("FullSD_Project_FoodCapybara.Shared.Domain.Payment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("OrderId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("PaymentDateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("PaymentMethod")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("PaymentTotal")
+                        .HasColumnType("decimal(18, 2)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OrderId");
+
+                    b.ToTable("Payment");
+                });
+
+            modelBuilder.Entity("FullSD_Project_FoodCapybara.Shared.Domain.Restaurant", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("RestAddress")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RestCategory")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RestDescription")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RestName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Restaurants");
+                });
+
+            modelBuilder.Entity("FullSD_Project_FoodCapybara.Shared.Domain.Review", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("OrderId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("ReviewDateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ReviewOnRestFoods")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ReviewRating")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OrderId");
+
+                    b.ToTable("Reviews");
+                });
+
+            modelBuilder.Entity("FullSD_Project_FoodCapybara.Shared.Domain.Staff", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<bool?>("IsAdmin")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("StaffEmail")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("StaffPassword")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("StaffPhone")
+                        .HasColumnType("int");
+
+                    b.Property<string>("StaffPosition")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("StaffUsername")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Staffs");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -262,6 +535,26 @@ namespace FullSD_Project_FoodCapybara.Server.Data.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "adminGUID-20db-474f-8407-5a6b159518ba",
+                            Name = "Administrator",
+                            NormalizedName = "ADMINISTRATOR"
+                        },
+                        new
+                        {
+                            Id = "staffGUID-20db-474f-8407-5a6b159518bb",
+                            Name = "Staff",
+                            NormalizedName = "STAFF"
+                        },
+                        new
+                        {
+                            Id = "userGUID-20db-474f-8407-5a6b159518bb",
+                            Name = "User",
+                            NormalizedName = "USER"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -351,6 +644,18 @@ namespace FullSD_Project_FoodCapybara.Server.Data.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = "3781efa7-66dc-47f0-860f-e506d04102e4",
+                            RoleId = "adminGUID-20db-474f-8407-5a6b159518ba"
+                        },
+                        new
+                        {
+                            UserId = "3700efa7-66dc-47f0-860f-e506d04102e4",
+                            RoleId = "staffGUID-20db-474f-8407-5a6b159518bb"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
@@ -372,6 +677,73 @@ namespace FullSD_Project_FoodCapybara.Server.Data.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens", (string)null);
+                });
+
+            modelBuilder.Entity("FullSD_Project_FoodCapybara.Shared.Domain.Food", b =>
+                {
+                    b.HasOne("FullSD_Project_FoodCapybara.Shared.Domain.Restaurant", "Restaurant")
+                        .WithMany("Menu")
+                        .HasForeignKey("RestaurantId");
+
+                    b.Navigation("Restaurant");
+                });
+
+            modelBuilder.Entity("FullSD_Project_FoodCapybara.Shared.Domain.Order", b =>
+                {
+                    b.HasOne("FullSD_Project_FoodCapybara.Shared.Domain.Customer", "Customer")
+                        .WithMany("CustOrderHistory")
+                        .HasForeignKey("CustomerId");
+
+                    b.HasOne("FullSD_Project_FoodCapybara.Shared.Domain.Staff", "Staff")
+                        .WithMany()
+                        .HasForeignKey("StaffId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Customer");
+
+                    b.Navigation("Staff");
+                });
+
+            modelBuilder.Entity("FullSD_Project_FoodCapybara.Shared.Domain.OrderItem", b =>
+                {
+                    b.HasOne("FullSD_Project_FoodCapybara.Shared.Domain.Food", "Food")
+                        .WithMany()
+                        .HasForeignKey("FoodID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("FullSD_Project_FoodCapybara.Shared.Domain.Order", "Order")
+                        .WithMany("OrderItems")
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Food");
+
+                    b.Navigation("Order");
+                });
+
+            modelBuilder.Entity("FullSD_Project_FoodCapybara.Shared.Domain.Payment", b =>
+                {
+                    b.HasOne("FullSD_Project_FoodCapybara.Shared.Domain.Order", "Order")
+                        .WithMany()
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Order");
+                });
+
+            modelBuilder.Entity("FullSD_Project_FoodCapybara.Shared.Domain.Review", b =>
+                {
+                    b.HasOne("FullSD_Project_FoodCapybara.Shared.Domain.Order", "Order")
+                        .WithMany()
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Order");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -423,6 +795,21 @@ namespace FullSD_Project_FoodCapybara.Server.Data.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("FullSD_Project_FoodCapybara.Shared.Domain.Customer", b =>
+                {
+                    b.Navigation("CustOrderHistory");
+                });
+
+            modelBuilder.Entity("FullSD_Project_FoodCapybara.Shared.Domain.Order", b =>
+                {
+                    b.Navigation("OrderItems");
+                });
+
+            modelBuilder.Entity("FullSD_Project_FoodCapybara.Shared.Domain.Restaurant", b =>
+                {
+                    b.Navigation("Menu");
                 });
 #pragma warning restore 612, 618
         }

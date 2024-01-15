@@ -1,4 +1,7 @@
 ﻿using Duende.IdentityServer.EntityFramework.Options;
+using FullSD_Project_FoodCapybara.Server.Configuration.Entities;
+
+//using FullSD_Project_FoodCapybara.Server.Configuration.Entities;
 using FullSD_Project_FoodCapybara.Server.Models;
 using FullSD_Project_FoodCapybara.Shared.Domain;
 using Microsoft.AspNetCore.ApiAuthorization.IdentityServer;
@@ -27,6 +30,23 @@ namespace FullSD_Project_FoodCapybara.Server.Data
         //addressing decimals in each entities
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.ApplyConfiguration(new RoleSeedConfiguration());
+            modelBuilder.ApplyConfiguration(new UserSeedConfiguration());
+            modelBuilder.ApplyConfiguration(new UserRoleSeedConfiguration()); //has to come after Role and User as it depends on them (those with FKs are last)
+
+
+            /*            modelBuilder.ApplyConfiguration(new RestaurantSeedConfiguration());
+                        modelBuilder.ApplyConfiguration(new FoodSeedConfiguration());
+                        modelBuilder.ApplyConfiguration(new StaffSeedConfiguration());
+            */
+            /*            modelBuilder.Entity<Food>()
+                            .HasOne(c => c.Restaurant)
+                            .WithMany(u => u.Menu)
+                            .HasForeignKey(u => u.RestId)
+                            .IsRequired();
+            */
             modelBuilder.Entity<Payment>()
                 .Property(p => p.PaymentTotal)
                 .HasColumnType("decimal(18, 2)"); // Adjust precision and scale as needed
@@ -45,7 +65,7 @@ namespace FullSD_Project_FoodCapybara.Server.Data
 
             // Add any other configurations or relationships here
 
-            base.OnModelCreating(modelBuilder);
+            
         }
     }
 }
