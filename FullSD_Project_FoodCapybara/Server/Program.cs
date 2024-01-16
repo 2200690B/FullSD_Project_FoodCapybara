@@ -4,6 +4,9 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
+using FullSD_Project_FoodCapybara.Server.IRepository;
+using FullSD_Project_FoodCapybara.Server.Repository;
+// controller can make use of the Unit of Work after registration
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,6 +27,10 @@ builder.Services.AddAuthentication()
     .AddIdentityServerJwt();
 
 // line 16-23 is all about authentication
+
+builder.Services.AddTransient<IUnitOfWork, UnitOfWork>(); // to register the Unit of Work service in pogram.cs file
+// do this before refactoring RestaurantController to use UnitOfWork framework of pattern
+
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
