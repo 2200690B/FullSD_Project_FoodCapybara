@@ -1,0 +1,15 @@
+﻿@page "/restaurants/"
+@inject HttpClient _client 
+<!--Provides methods for sending Http requests, & recieving HTTP responses from a resource identified by a URI (POSTMAN)    Instance is registered in Program.cs . 
+@inject IJSRuntime js 
+<!-- Pass the IJSRuntime into the singleton service's implementation as an argument of its mothod calls instead of injecting it into the singleton -->
+@attribute [Authorize]
+<!-- makes sure user is logged in before accessing -->
+
+<h3 class="card-title">Car Restaurants</h3>
+<br />
+
+
+@code {
+
+}
