@@ -12,15 +12,11 @@
     <nav class="flex-column">
         <LoginDisplay/>
 
+
+        <!-- SHARED -->
         <div class="nav-item px-3">
             <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
                 <span class="oi oi-home" aria-hidden="true"></span> Home
-            </NavLink>
-        </div>
-
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="search">
-                <span class="fa fa-search" aria-hidden="true"></span> Search
             </NavLink>
         </div>
 
@@ -30,7 +26,21 @@
             </NavLink>
         </div>
 
-        <div class="nav-item px-3"> 
+
+        <!-- CUSTOMER -->
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="search">
+                <span class="oi oi-search" aria-hidden="true"></span> Search
+            </NavLink>
+        </div>
+
+        @* <div class="nav-item px-3">
+            <NavLink class="nav-link" href="show-image-1">
+                <span class="fa fa-search" aria-hidden="true"></span> Test
+            </NavLink>
+        </div> *@
+        
+        <div class="nav-item px-3">
             <NavLink class="nav-link" href="orderhistory">
                 <span class="oi oi-spreadsheet" aria-hidden="true"></span> Past Orders
             </NavLink>
@@ -42,29 +52,47 @@
             </NavLink>
         </div>
 
+
+        <!-- STAFF -->
         <div class="nav-item px-3">
             <NavLink class="nav-link" href="staffmain">
                 <span class="oi oi-headphones" aria-hidden="true"></span> Staff
             </NavLink>
         </div>
-        
+
         <div class="nav-item px-3">
             <NavLink class="nav-link" href="staff">
                 <span class="oi oi-person" aria-hidden="true"></span> Manage Orders
             </NavLink>
         </div>
-        
+
         <div class="nav-item px-3">
             <NavLink class="nav-link" href="driver">
                 <span class="oi oi-heart" aria-hidden="true"></span> Assigned Orders
             </NavLink>
         </div>
 
+        <!-- ADMIN -->
         <div class="nav-item px-3">
-            <NavLink class="nav-link" href="restaurant">
-                <span class="oi oi-star" aria-hidden="true"></span> Restaurants
+            <NavLink class="nav-link" href="restaurantsindex">
+                <span class="oi oi-star" aria-hidden="true"></span> Restaurants Index
             </NavLink>
         </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="foodsindex">
+                <span class="oi oi-star" aria-hidden="true"></span> Foods Index
+            </NavLink>
+        </div>
+
+        
+
+        
+
+        
+        
+        
+
+        
 
         <!--
         <div class="nav-item px-3">
@@ -73,11 +101,11 @@
             </NavLink>
         </div>
         -->
-        <div class="nav-item px-3">
+        @* <div class="nav-item px-3">
             <NavLink class="nav-link" href="fetchdata">
                 <span class="oi oi-list-rich" aria-hidden="true"></span> Fetch data
             </NavLink>
-        </div>
+        </div> *@
         
     </nav>
 </div>

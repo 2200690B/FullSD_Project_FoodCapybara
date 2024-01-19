@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FullSD_Project_FoodCapybara.Server.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240115173851_DataSeedingFood")]
-    partial class DataSeedingFood
+    [Migration("20240117100920_AddedImageAttribute_ToRestaurants")]
+    partial class AddedImageAttribute_ToRestaurants
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -241,7 +241,7 @@ namespace FullSD_Project_FoodCapybara.Server.Migrations
                         {
                             Id = "3781efa7-66dc-47f0-860f-e506d04102e4",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "6f975851-7a4c-46c6-b5f4-c37cc5ae7d9e",
+                            ConcurrencyStamp = "1406cb75-7430-491d-a75b-dfbc93a885c1",
                             Email = "admin@localhost.com",
                             EmailConfirmed = false,
                             FirstName = "Admin",
@@ -249,9 +249,9 @@ namespace FullSD_Project_FoodCapybara.Server.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@LOCALHOST.COM",
                             NormalizedUserName = "ADMIN@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEM5t/AZZmi2i6HAT9NF/tnQf1hUsrpI4xTj4N0xueq1nALOtoDOSHTHPeB0xrNqGdQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEI9Pz+omoYr9/JtTaEjgP5ICmPpLMfmdogWE0LhIY47RLvET0EMRASZqBvdUC5GKiA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "57593842-b32a-4409-bdff-d19f127c6eba",
+                            SecurityStamp = "ec3374a8-b96c-49b7-b370-226267275b46",
                             TwoFactorEnabled = false,
                             UserName = "admin@localhost.com"
                         },
@@ -259,7 +259,7 @@ namespace FullSD_Project_FoodCapybara.Server.Migrations
                         {
                             Id = "3700efa7-66dc-47f0-860f-e506d04102e4",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "4c4d5852-6888-4d11-881f-a3f069ec6595",
+                            ConcurrencyStamp = "17a66cc3-eaa4-46dd-a56a-3bdcccbc6454",
                             Email = "staff@localhost.com",
                             EmailConfirmed = false,
                             FirstName = "Staff",
@@ -267,9 +267,9 @@ namespace FullSD_Project_FoodCapybara.Server.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "STAFF@LOCALHOST.COM",
                             NormalizedUserName = "STAFF@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEId2q0Mfk47owb964Q3jmweg3JoKfhbBbt0J8ITJYHy2SQwaTudiGc6rfLjpypLVRA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEAaAthk1lF2oJYvfJ8MQEbYXwWqEszUrKQcTy3OcKDIDcdQz6IjM9m4Q95D69rNnTQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "05c8a872-e060-4af0-aeb3-cdd7b085d6ad",
+                            SecurityStamp = "668ad492-ab5f-4c1b-8b9f-f8767b9ef078",
                             TwoFactorEnabled = false,
                             UserName = "staff@localhost.com"
                         });
@@ -334,6 +334,98 @@ namespace FullSD_Project_FoodCapybara.Server.Migrations
                     b.HasIndex("RestId");
 
                     b.ToTable("Foods");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            FoodCost = 12.99m,
+                            FoodDesc = "Classic pizza with tomato, mozzarella, and basil.",
+                            FoodName = "Margherita  Pizza",
+                            FoodRating = 5,
+                            RestId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            FoodCost = 14.99m,
+                            FoodDesc = "Pizza with pepperoni and cheese.",
+                            FoodName = "Pepperoni Pizza",
+                            FoodRating = 4,
+                            RestId = 1
+                        },
+                        new
+                        {
+                            Id = 3,
+                            FoodCost = 7.99m,
+                            FoodDesc = "Crispy breadsticks with garlic butter.",
+                            FoodName = "Garlic Breadsticks",
+                            FoodRating = 4,
+                            RestId = 1
+                        },
+                        new
+                        {
+                            Id = 4,
+                            FoodCost = 2.49m,
+                            FoodDesc = "Classic carbonated beverage.",
+                            FoodName = "Soda",
+                            FoodRating = 3,
+                            RestId = 1
+                        },
+                        new
+                        {
+                            Id = 5,
+                            FoodCost = 1.99m,
+                            FoodDesc = "Refreshing iced tea.",
+                            FoodName = "Iced Tea",
+                            FoodRating = 3,
+                            RestId = 1
+                        },
+                        new
+                        {
+                            Id = 6,
+                            FoodCost = 3.99m,
+                            FoodDesc = "A flaky and buttery croissant filled with rich chocolate.",
+                            FoodName = "Chocolate Croissant",
+                            FoodRating = 4,
+                            RestId = 2
+                        },
+                        new
+                        {
+                            Id = 7,
+                            FoodCost = 2.49m,
+                            FoodDesc = "Soft and moist muffin bursting with juicy blueberries.",
+                            FoodName = "Blueberry Muffin",
+                            FoodRating = 5,
+                            RestId = 2
+                        },
+                        new
+                        {
+                            Id = 8,
+                            FoodCost = 4.49m,
+                            FoodDesc = "Classic croissant with a sweet almond filling and crunchy almonds on top.",
+                            FoodName = "Almond Croissant",
+                            FoodRating = 4,
+                            RestId = 2
+                        },
+                        new
+                        {
+                            Id = 9,
+                            FoodCost = 3.79m,
+                            FoodDesc = "Spiraled pastry with layers of cinnamon sugar and topped with cream cheese icing.",
+                            FoodName = "Cinnamon Roll",
+                            FoodRating = 5,
+                            RestId = 2
+                        },
+                        new
+                        {
+                            Id = 10,
+                            FoodCost = 3.29m,
+                            FoodDesc = "Delicate pastry filled with sweet cream cheese filling.",
+                            FoodName = "Cheese Danish",
+                            FoodRating = 4,
+                            RestId = 2
+                        });
                 });
 
             modelBuilder.Entity("FullSD_Project_FoodCapybara.Shared.Domain.Order", b =>
@@ -439,6 +531,9 @@ namespace FullSD_Project_FoodCapybara.Server.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("RestDescription")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RestImage")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("RestName")

@@ -37,15 +37,16 @@ namespace FullSD_Project_FoodCapybara.Server.Controllers.Entities
         {
             //Refactored
             //return await _context.Foods.ToListAsync();
-            var foods = await _unitOfWork.Foods.GetAll();
-            return Ok(foods);
+            var Foods = await _unitOfWork.Foods.GetAll(includes: q => q.Include(x => x.Restaurant));
+            return Ok(Foods);
+
         }
 
         // GET: api/Foods/5
         [HttpGet("{id}")]
         //Refactored
-        //public async Task<ActionResult<Food>>GetFood(int id)
-        public async Task<IActionResult> GetFood(int id)
+        public async Task<ActionResult<Food>>GetFood(int id)
+        //public async Task<IActionResult> GetFood(int id)
         {
             //Refactored
             //var food = await _context.Foods.FindAsync(id);

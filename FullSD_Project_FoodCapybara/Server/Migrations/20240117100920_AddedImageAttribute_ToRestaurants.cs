@@ -3,10 +3,12 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace FullSD_Project_FoodCapybara.Server.Migrations
 {
     /// <inheritdoc />
-    public partial class database1 : Migration
+    public partial class AddedImageAttribute_ToRestaurants : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -136,7 +138,8 @@ namespace FullSD_Project_FoodCapybara.Server.Migrations
                     RestName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     RestAddress = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     RestDescription = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    RestCategory = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    RestCategory = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    RestImage = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -388,6 +391,60 @@ namespace FullSD_Project_FoodCapybara.Server.Migrations
                         principalTable: "Orders",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.InsertData(
+                table: "AspNetRoles",
+                columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
+                values: new object[,]
+                {
+                    { "adminGUID-20db-474f-8407-5a6b159518ba", null, "Administrator", "ADMINISTRATOR" },
+                    { "staffGUID-20db-474f-8407-5a6b159518bb", null, "Staff", "STAFF" },
+                    { "userGUID-20db-474f-8407-5a6b159518bb", null, "User", "USER" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "AspNetUsers",
+                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
+                values: new object[,]
+                {
+                    { "3700efa7-66dc-47f0-860f-e506d04102e4", 0, "17a66cc3-eaa4-46dd-a56a-3bdcccbc6454", "staff@localhost.com", false, "Staff", "User", false, null, "STAFF@LOCALHOST.COM", "STAFF@LOCALHOST.COM", "AQAAAAIAAYagAAAAEAaAthk1lF2oJYvfJ8MQEbYXwWqEszUrKQcTy3OcKDIDcdQz6IjM9m4Q95D69rNnTQ==", null, false, "668ad492-ab5f-4c1b-8b9f-f8767b9ef078", false, "staff@localhost.com" },
+                    { "3781efa7-66dc-47f0-860f-e506d04102e4", 0, "1406cb75-7430-491d-a75b-dfbc93a885c1", "admin@localhost.com", false, "Admin", "User", false, null, "ADMIN@LOCALHOST.COM", "ADMIN@LOCALHOST.COM", "AQAAAAIAAYagAAAAEI9Pz+omoYr9/JtTaEjgP5ICmPpLMfmdogWE0LhIY47RLvET0EMRASZqBvdUC5GKiA==", null, false, "ec3374a8-b96c-49b7-b370-226267275b46", false, "admin@localhost.com" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Restaurants",
+                columns: new[] { "Id", "RestAddress", "RestCategory", "RestDescription", "RestImage", "RestName" },
+                values: new object[,]
+                {
+                    { 1, "TastyVille Street 69 Papa's Mall #01-123", "Fast Food", "Be it for delivery or takeaway from the nearest Papa's pizzeria outlet, we have pizza makers ready to make fresh and hot pizzas to satisfy your cravings.  Enjoy freshly made and oven-baked pizzas by Papa's Pizzeria!", null, "Papa's Pizzeria" },
+                    { 2, "TastyVille Street 69 Papa's Mall #01-124", "Bakeries", "Experience the art of baking at Papa's Bakeria, where each pastry is crafted with passion and expertise. Indulge in our delightful cakes, fresh bread, and savory pastries, we guarantee a journey of exquisite flavors and quality ingredients! Enjoy the warmth of our ovens as we bring you the finest baked goods in TastyVille.", null, "Papa's Bakeria" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "AspNetUserRoles",
+                columns: new[] { "RoleId", "UserId" },
+                values: new object[,]
+                {
+                    { "staffGUID-20db-474f-8407-5a6b159518bb", "3700efa7-66dc-47f0-860f-e506d04102e4" },
+                    { "adminGUID-20db-474f-8407-5a6b159518ba", "3781efa7-66dc-47f0-860f-e506d04102e4" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Foods",
+                columns: new[] { "Id", "FoodCost", "FoodDesc", "FoodName", "FoodRating", "RestId" },
+                values: new object[,]
+                {
+                    { 1, 12.99m, "Classic pizza with tomato, mozzarella, and basil.", "Margherita  Pizza", 5, 1 },
+                    { 2, 14.99m, "Pizza with pepperoni and cheese.", "Pepperoni Pizza", 4, 1 },
+                    { 3, 7.99m, "Crispy breadsticks with garlic butter.", "Garlic Breadsticks", 4, 1 },
+                    { 4, 2.49m, "Classic carbonated beverage.", "Soda", 3, 1 },
+                    { 5, 1.99m, "Refreshing iced tea.", "Iced Tea", 3, 1 },
+                    { 6, 3.99m, "A flaky and buttery croissant filled with rich chocolate.", "Chocolate Croissant", 4, 2 },
+                    { 7, 2.49m, "Soft and moist muffin bursting with juicy blueberries.", "Blueberry Muffin", 5, 2 },
+                    { 8, 4.49m, "Classic croissant with a sweet almond filling and crunchy almonds on top.", "Almond Croissant", 4, 2 },
+                    { 9, 3.79m, "Spiraled pastry with layers of cinnamon sugar and topped with cream cheese icing.", "Cinnamon Roll", 5, 2 },
+                    { 10, 3.29m, "Delicate pastry filled with sweet cream cheese filling.", "Cheese Danish", 4, 2 }
                 });
 
             migrationBuilder.CreateIndex(

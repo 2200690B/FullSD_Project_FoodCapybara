@@ -1,0 +1,79 @@
+﻿@page "/foodsindex/"
+@inject HttpClient _client
+@inject IJSRuntime js
+@attribute [Authorize]
+
+<!--Provides methods for sending Http requests, & recieving HTTP responses from a resource identified by a URI (POSTMAN)    Instance is registered in Program.cs .
+<!-- Pass the IJSRuntime into the singleton service's implementation as an argument of its mothod calls instead of injecting it into the singleton -->
+<!-- foods sure user is logged in before accessing -->
+
+<h3 class="card-title">Foods</h3>
+<br />
+
+
+@if (Foods == null)
+{
+    <div class="alert alert-info">Loading Foods...</div>
+}
+else
+{
+    <table class="table table-responsive">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Restaurant</th>
+                <th>Descpriptions</th>
+                <th>Rating</th>
+                <th>Description</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var food in Foods)
+            {
+                <tr>
+                    <td>@food.FoodName</td>
+                    <td>@food.Restaurant.RestName</td>
+                    <td>@food.FoodCost</td>
+                    <td>@food.FoodRating</td>
+                    <td>@food.FoodDesc</td>
+                    <td>
+                        <a href="/foods/view/@food.Id" class="btn btn-primary">
+                            <span class="oi oi-book"></span>
+                        </a><!-- View -->
+                        <a href="/foods/edit/@food.Id" class="btn btn-warning">
+                            <span class="oi oi-pencil"></span>
+                        </a><!-- Edit -->
+                        <button class="btn btn-danger" @onclick="@(()=>Delete(food.Id))">
+                            <span class="oi oi-delete"></span>
+                        </button> <!-- Delete -->
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private List<Food>? Foods;
+
+    protected async override Task OnInitializedAsync()
+    {
+        Foods = await _client.GetFromJsonAsync<List<Food>>($"{Endpoints.FoodsEndpoint}");
+    }
+
+    async Task Delete(int foodId)
+    {
+        if (Foods != null)
+        {
+            var food = Foods.First(q => q.Id == foodId);
+            var confirm = await js.InvokeAsync<bool>("confirm", $"Do you want to delete {food.FoodName}?");
+            if (confirm)
+            {
+                await _client.DeleteAsync($"{Endpoints.FoodsEndpoint}/{foodId}");
+                await OnInitializedAsync();
+            }
+        }
+    }
+
+}

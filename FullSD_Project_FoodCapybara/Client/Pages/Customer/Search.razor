@@ -1,15 +1,40 @@
 ﻿@page "/search"
 @attribute [Authorize] 
-@* to make sure you are logged in before being able to access the page*@
+@inject HttpClient _client
+@inject IJSRuntime js
 
+@* to make sure you are logged in before being able to access the page*@
 <PageTitle>Search</PageTitle>
 
-<h3>Search</h3>
+<h3>This page is to seach for restaurants available</h3>
+<div class="container">
+    @foreach (var restaurant in Restaurants)
+    {
+        <a href="#">
+        <div class="row"> @*new restaurants will have new rows*@
+            <figure class="col-4"> @*higher col, more space used*@
+                <img class="w-100" src="~/img/restaurantImages/@restaurant.RestImage" />
+                <figcaption> @restaurant.RestName</figcaption>
+            </figure>
+            <div class="col-8">
+                <h1>@restaurant.RestName</h1>
+                <p>@restaurant.RestDescription</p>
+            </div>
+        </div>
+        </a>
+        <hr />
+        <br />
+    }
+</div>
 
-<SearchContentComponent />
 
-<p>This page is to seach for restaurants available</p>
+
 
 @code {
-    // to add C* code
+    private List<Restaurant>? Restaurants;
+
+    protected async override Task OnInitializedAsync()
+    {
+        Restaurants = await _client.GetFromJsonAsync<List<Restaurant>>($"{Endpoints.RestaurantsEndpoint}");
+    }
 }

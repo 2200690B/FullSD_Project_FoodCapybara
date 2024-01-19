@@ -238,7 +238,7 @@ namespace FullSD_Project_FoodCapybara.Server.Migrations
                         {
                             Id = "3781efa7-66dc-47f0-860f-e506d04102e4",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "3b0608a7-36f3-433e-b3a1-d2d82a11e391",
+                            ConcurrencyStamp = "4a1b9010-46b6-4ecd-b5f2-c9bb67e4d663",
                             Email = "admin@localhost.com",
                             EmailConfirmed = false,
                             FirstName = "Admin",
@@ -246,9 +246,9 @@ namespace FullSD_Project_FoodCapybara.Server.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@LOCALHOST.COM",
                             NormalizedUserName = "ADMIN@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEGMwIcwu7wM9AvxgL9PxQzOInzOy21Zf3xj8jMFQ0wc/U+6fNxO4gU7OrQSKtPDfQw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAELxG852va/CQuU3QG1VzT4RwFvCjzHNHBCL1nwO3YgFGSTWLL21LAbtH+vT0+TFHRA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "c1d74e4d-4f62-4af5-872a-f2d717ef079b",
+                            SecurityStamp = "1e51f464-01b8-47ce-abcd-f4dd2b7b7f78",
                             TwoFactorEnabled = false,
                             UserName = "admin@localhost.com"
                         },
@@ -256,7 +256,7 @@ namespace FullSD_Project_FoodCapybara.Server.Migrations
                         {
                             Id = "3700efa7-66dc-47f0-860f-e506d04102e4",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "5c4f79b6-46ca-49a7-928c-64ad61e8f597",
+                            ConcurrencyStamp = "fc32e169-bdc1-4d01-a561-3ea16c12a886",
                             Email = "staff@localhost.com",
                             EmailConfirmed = false,
                             FirstName = "Staff",
@@ -264,9 +264,9 @@ namespace FullSD_Project_FoodCapybara.Server.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "STAFF@LOCALHOST.COM",
                             NormalizedUserName = "STAFF@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEABdX08d56JR0+7i9j3DRlUbPKz2FOUnN6WZ2hDt5T38/z+XwC66afFmTV5KlIT2Mw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEGl9zl4LHDv3fwveOVOa1P1dPOHuiErquz9vSPcMK94yV2eGDwXoE3N400IVnvxwTA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "d4a70a5a-2b17-4ce5-b6f6-12bd726ffa20",
+                            SecurityStamp = "ffa53d74-f7b1-4487-9f4f-5a5d193a2f55",
                             TwoFactorEnabled = false,
                             UserName = "staff@localhost.com"
                         });
@@ -530,6 +530,9 @@ namespace FullSD_Project_FoodCapybara.Server.Migrations
                     b.Property<string>("RestDescription")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("RestImage")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("RestName")
                         .HasColumnType("nvarchar(max)");
 
@@ -544,6 +547,7 @@ namespace FullSD_Project_FoodCapybara.Server.Migrations
                             RestAddress = "TastyVille Street 69 Papa's Mall #01-123",
                             RestCategory = "Fast Food",
                             RestDescription = "Be it for delivery or takeaway from the nearest Papa's pizzeria outlet, we have pizza makers ready to make fresh and hot pizzas to satisfy your cravings.  Enjoy freshly made and oven-baked pizzas by Papa's Pizzeria!",
+                            RestImage = "Rest1.png",
                             RestName = "Papa's Pizzeria"
                         },
                         new
@@ -552,6 +556,7 @@ namespace FullSD_Project_FoodCapybara.Server.Migrations
                             RestAddress = "TastyVille Street 69 Papa's Mall #01-124",
                             RestCategory = "Bakeries",
                             RestDescription = "Experience the art of baking at Papa's Bakeria, where each pastry is crafted with passion and expertise. Indulge in our delightful cakes, fresh bread, and savory pastries, we guarantee a journey of exquisite flavors and quality ingredients! Enjoy the warmth of our ovens as we bring you the finest baked goods in TastyVille.",
+                            RestImage = "Rest2.png",
                             RestName = "Papa's Bakeria"
                         });
                 });

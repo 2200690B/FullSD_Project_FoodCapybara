@@ -1,0 +1,29 @@
+﻿@page "/search/{Id:int}"
+
+<h3>IndividualRestaurant</h3>
+<p> @Id</p>
+
+<div class="container">
+    <div class="row">
+        <div class="w-100" src="(image of the restaurant)">
+            <h1>@restaurants.RestName</h1>
+            <h3>@restaurants.RestAddress</h3>
+            <h4>@restaurants.RestCategory</h4>
+            <p>@restaurants.RestDesc</p>
+        </div>
+        <div class="col-3">
+
+        </div>
+    </div>
+</div>
+
+
+@code {
+    [Parameter] //to know that the id of the URL comes from the parameter
+    public int Id { get; set; }
+
+    public List<Restaurant>? restaurants;
+
+    //use code to read list of restaurants
+
+}

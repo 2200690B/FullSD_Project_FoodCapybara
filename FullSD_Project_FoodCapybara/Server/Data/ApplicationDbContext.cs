@@ -24,8 +24,11 @@ namespace FullSD_Project_FoodCapybara.Server.Data
         //addressing decimals in each entities
 
         //this is a constructor
-        public ApplicationDbContext(DbContextOptions options, IOptions<OperationalStoreOptions>
-            operationalStoreOptions) : base(options, operationalStoreOptions)
+        public ApplicationDbContext(
+            DbContextOptions options, 
+            IOptions<OperationalStoreOptions>
+            operationalStoreOptions
+            ) : base(options, operationalStoreOptions)
         {
         }
 

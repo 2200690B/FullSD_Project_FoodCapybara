@@ -9,10 +9,16 @@
 
   <ItemGroup>
     <Content Remove="Pages\Counter.razor" />
+    <Content Remove="Pages\Customer\IndividualRestaurant.razor" />
+    <Content Remove="Pages\Customer\Restaurant.razor" />
+    <Content Remove="Pages\Customer\Test.razor" />
+    <Content Remove="wwwroot\icon-192.png" />
+    <Content Remove="wwwroot\icon-512.png" />
     <Content Remove="wwwroot\logo.png" />
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="wwwroot\img\restaurantImages\Rest2.png" />
     <None Include="wwwroot\logo.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -34,8 +40,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Pages\Customer\" />
-    <Folder Include="Pages\Staff\Admin\Food\" />
     <Folder Include="Pages\Staff\Admin\Staff\" />
     <Folder Include="Pages\Staff\Admin\Review\" />
     <Folder Include="Pages\Staff\Admin\Payment\" />

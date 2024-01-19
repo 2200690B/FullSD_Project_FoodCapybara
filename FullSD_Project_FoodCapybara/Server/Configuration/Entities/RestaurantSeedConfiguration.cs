@@ -19,7 +19,9 @@ namespace FullSD_Project_FoodCapybara.Server.Configuration.Entities
                     RestDescription = "Be it for delivery or takeaway from the nearest Papa's pizzeria outlet," +
                     " we have pizza makers ready to make fresh and hot pizzas to satisfy your cravings. " +
                     " Enjoy freshly made and oven-baked pizzas by Papa's Pizzeria!",
-                    RestCategory = "Fast Food"
+                    RestCategory = "Fast Food",
+                    RestImage = "Rest1.png"
+                    
                     
                 },
                 new Restaurant
@@ -31,7 +33,9 @@ namespace FullSD_Project_FoodCapybara.Server.Configuration.Entities
                     "Indulge in our delightful cakes, fresh bread, and savory pastries, " +
                     "we guarantee a journey of exquisite flavors and quality ingredients! " +
                     "Enjoy the warmth of our ovens as we bring you the finest baked goods in TastyVille.",
-                    RestCategory = "Bakeries"
+                    RestCategory = "Bakeries",
+                    RestImage = "Rest2.png"
+
 
                 }
         );

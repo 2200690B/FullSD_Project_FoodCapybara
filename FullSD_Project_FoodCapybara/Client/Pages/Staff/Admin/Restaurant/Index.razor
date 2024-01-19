@@ -1,15 +1,77 @@
-﻿@page "/restaurants/"
+﻿@page "/restaurantsindex/"
 @inject HttpClient _client 
-<!--Provides methods for sending Http requests, & recieving HTTP responses from a resource identified by a URI (POSTMAN)    Instance is registered in Program.cs . 
-@inject IJSRuntime js 
-<!-- Pass the IJSRuntime into the singleton service's implementation as an argument of its mothod calls instead of injecting it into the singleton -->
+@inject IJSRuntime js
 @attribute [Authorize]
-<!-- makes sure user is logged in before accessing -->
 
-<h3 class="card-title">Car Restaurants</h3>
+<!--Provides methods for sending Http requests, & recieving HTTP responses from a resource identified by a URI (POSTMAN)    Instance is registered in Program.cs .
+<!-- Pass the IJSRuntime into the singleton service's implementation as an argument of its mothod calls instead of injecting it into the singleton -->
+<!-- restaurants sure user is logged in before accessing -->
+
+<h3 class="card-title">Restaurants</h3>
 <br />
 
 
+@if (Restaurants == null)
+{
+    <div class="alert alert-info">Loading Restaurants...</div>
+}
+else
+{
+    <table class="table table-responsive">
+        <thead>
+            <tr>
+                <th>Restaurant Names</th>
+                <th>Restaurant Descpriptions</th>
+                <th>Restaurant Address</th>
+                <th>Restaurant Category</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var restaurant in Restaurants)
+            {
+                <tr>
+                    <td>@restaurant.RestName</td>
+                    <td>@restaurant.RestDescription</td>
+                    <td>@restaurant.RestAddress</td>
+                    <td>@restaurant.RestCategory</td>
+                    <td>
+                        <a href="/restaurants/view/@restaurant.Id" class="btn btn-primary">
+                            <span class="oi oi-book"></span>
+                        </a ><!-- View -->
+                        <a href="/restaurants/edit/@restaurant.Id" class="btn btn-warning">
+                            <span class="oi oi-pencil"></span>
+                        </a><!-- Edit -->
+                        <button class="btn btn-danger" @onclick="@(()=>Delete(restaurant.Id))">
+                            <span class="oi oi-delete"></span>
+                        </button> <!-- Delete -->
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
 @code {
+    private List<Restaurant>? Restaurants;
+
+    protected async override Task OnInitializedAsync()
+    {
+        Restaurants = await _client.GetFromJsonAsync<List<Restaurant>>($"{Endpoints.RestaurantsEndpoint}");
+    }
+
+    async Task Delete(int restaurantId)
+    {
+        if (Restaurants != null)
+        {
+            var restaurant = Restaurants.First(q => q.Id == restaurantId);
+            var confirm = await js.InvokeAsync<bool>("confirm", $"Do you want to delete {restaurant.RestName}?");
+            if (confirm)
+            {
+                await _client.DeleteAsync($"{Endpoints.RestaurantsEndpoint}/{restaurantId}");
+                await OnInitializedAsync();
+            }
+        }
+    }
 
 }
