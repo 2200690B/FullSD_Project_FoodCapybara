@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using FullSD_Project_FoodCapybara.Server.IRepository;
 using FullSD_Project_FoodCapybara.Server.Repository;
+using System.Text.Json.Serialization;
 // controller can make use of the Unit of Work after registration
 
 var builder = WebApplication.CreateBuilder(args);
@@ -30,6 +31,13 @@ builder.Services.AddAuthentication()
 
 builder.Services.AddTransient<IUnitOfWork, UnitOfWork>(); // to register the Unit of Work service in pogram.cs file
 // do this before refactoring RestaurantController to use UnitOfWork framework of pattern
+
+// to remove cycles like restaurants and foods
+//builder.Services.AddControllersWithViews()
+//                .AddJsonOptions(x => x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
+builder.Services.AddControllersWithViews().AddNewtonsoftJson(op =>
+    op.SerializerSettings.ReferenceLoopHandling =
+    Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
 
 builder.Services.AddControllersWithViews();

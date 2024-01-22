@@ -1,0 +1,16 @@
+﻿<!-- code to share Back button throughout selected pages.
+    "@using FullSD_Project_FoodCapybara.Client.Components" added to _Imports.razor
+    "<SearchContentComponent />" is to be added in the selected page
+-->
+
+
+<a href="/@Target/" class="btn btn-outline-darkbtn-block">
+    <span class="oi oi-arrow-left"></span>
+    Back 
+</a>
+
+@code {
+    [Parameter] public string Target { get; set; }
+}
+
+

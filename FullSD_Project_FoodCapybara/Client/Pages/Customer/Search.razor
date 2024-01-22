@@ -6,23 +6,29 @@
 @* to make sure you are logged in before being able to access the page*@
 <PageTitle>Search</PageTitle>
 
-<h3>This page is to seach for restaurants available</h3>
+<h3>This page is to search for restaurants available</h3>
+
+<head>
+@*     <link rel="stylesheet" href="/css/Search.razor.css" />*@
+    <link rel=" stylesheet" href="css/Search.razor.css" />
+</head>
+
 <div class="container">
     @foreach (var restaurant in Restaurants)
     {
-        <a href="#">
-        <div class="row"> @*new restaurants will have new rows*@
-            <figure class="col-4"> @*higher col, more space used*@
-                <img class="w-100" src="~/img/restaurantImages/@restaurant.RestImage" />
-                <figcaption> @restaurant.RestName</figcaption>
-            </figure>
-            <div class="col-8">
-                <h1>@restaurant.RestName</h1>
-                <p>@restaurant.RestDescription</p>
+        <a href="/search/@restaurant.Id" >            @* to make the whole row clickable*@
+            <div class="row">                                 @*new restaurants will have new rows*@
+                <div class="col-sm-4">                      @*higher col, more space used*@
+                    <img class="w-100" src="img/restaurantImages/@restaurant.RestImage" />  @*widh of 100*@
+                </div>
+            <div class="col-8 post-front-page">
+                <h1 class="postTitle"> @restaurant.RestName </h1>
+                <h2 class="postIntroduction"> @restaurant.RestCategory </h2>
+                <p> @restaurant.RestDescription </p>
             </div>
         </div>
         </a>
-        <hr />
+        <hr class="separator" />
         <br />
     }
 </div>
@@ -31,7 +37,7 @@
 
 
 @code {
-    private List<Restaurant>? Restaurants;
+    private List<Restaurant>? Restaurants = new();
 
     protected async override Task OnInitializedAsync()
     {

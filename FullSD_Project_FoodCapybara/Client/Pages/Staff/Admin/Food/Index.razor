@@ -22,7 +22,7 @@ else
             <tr>
                 <th>Name</th>
                 <th>Restaurant</th>
-                <th>Descpriptions</th>
+                <th>Cost</th>
                 <th>Rating</th>
                 <th>Description</th>
                 <th>Actions</th>
@@ -34,7 +34,7 @@ else
                 <tr>
                     <td>@food.FoodName</td>
                     <td>@food.Restaurant.RestName</td>
-                    <td>@food.FoodCost</td>
+                    <td>$@food.FoodCost</td>
                     <td>@food.FoodRating</td>
                     <td>@food.FoodDesc</td>
                     <td>
@@ -55,7 +55,7 @@ else
 }
 
 @code {
-    private List<Food>? Foods;
+    private List<Food>? Foods = new();
 
     protected async override Task OnInitializedAsync()
     {
