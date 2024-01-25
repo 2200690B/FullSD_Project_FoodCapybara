@@ -1,15 +1,16 @@
-﻿.img-container {
+﻿.landing-img-container {
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 50vh; /* Set a height to center vertically within the viewport */
 }
 
-.img-style {
+.landing-img-style {
     width: auto;
     max-width: auto;
 }
 
-h1{
+.landing-h1 {
     color: white;
     text-align: center;
     font-family: Georgia;

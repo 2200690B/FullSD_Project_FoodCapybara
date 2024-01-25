@@ -1,0 +1,17 @@
+﻿/* Style for the back button */
+.btn-back {
+    display: inline-block;
+    padding: 8px 16px; /* Adjust padding as needed */
+    font-size: 16px; /* Adjust font size as needed */
+    text-decoration: none;
+    border: 2px solid #343a40; /* Dark color for the border */
+    color: #343a40; /* Dark color for the text */
+    border-radius: 5px; /* Rounded corners */
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+    /* Hover effect */
+    .btn-back:hover {
+        background-color: #343a40; /* Dark color for the background on hover */
+        color: whitesmoke; /* Light color for the text on hover */
+    }

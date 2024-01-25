@@ -29,10 +29,10 @@ else
         <thead>
             <tr>
                 <th>Foods</th>
-                <th>Restaurant</th>
-                <th>Cost</th>
-                <th>Rating</th>
                 <th>Description</th>
+                <th>Cost</th>
+                <th>Cart</th>
+                <th>Cost added</th>
             </tr>
         </thead>
         <tbody>
@@ -41,11 +41,30 @@ else
                 @if (@Id == food.RestId)
                 {
                     <tr>
-                        <td>@food.FoodName</td>
-                        <td>@food.Restaurant.RestName</td>
-                        <td>$@food.FoodCost</td>
-                        <td>@food.FoodRating</td>
+                        <td>
+                            @food.FoodName
+                        </td>
                         <td>@food.FoodDesc</td>
+                        <td>$@food.FoodCost</td>
+                            @* href="/orderitem and adding to cart" *@
+                        <td>
+                            <a class="btn btn-primary" @onclick="() => IncrementCount(food.Id)">
+                                @* passing parameters in the method *@
+                                <span class="oi oi-plus"></span>
+                            </a>
+                            <a class="status">
+                                @GetCountForFood(food.Id)
+                            </a>
+                            <a class="btn btn-primary" @onclick="() => DecrementCount(food.Id)">
+                                <span class="oi oi-minus"></span>
+                            </a>
+                            
+                            
+                        </td>
+                        <td>
+                            $@GetPriceForItem(food.Id)
+                        </td>
+
 
                     </tr>
                 }
@@ -55,19 +74,83 @@ else
     </table>
 }
 
+<div class="AddToCart">
+@*     <p> add to cart </p>
+ *@    <a class="btn btn-primary" @onclick="() => ResetCounts()">
+        <span class="oi oi-cart"></span> Add To Cart
+    </a>
+</div>
+
 
 @code {
     [Parameter] public int Id { get; set; }
     Restaurant Restaurants = new Restaurant();
     private List<Food>? Foods = new();
-
+    private Dictionary<int, int> foodCounts = new Dictionary<int, int>();
 
     protected async override Task OnInitializedAsync()
     {
         Restaurants = await _client.GetFromJsonAsync<Restaurant>($"{Endpoints.RestaurantsEndpoint}/{Id}");
         Foods = await _client.GetFromJsonAsync<List<Food>>($"{Endpoints.FoodsEndpoint}");
-        //restaurants = Restaurants.Where(x => x.Id == id).FirstOrDefault();
+
+        foodCounts.Clear();
+
+        // Initialize counts for each food
+        if (foodCounts.Count == 0)      //checks if food dictionary is empty and has not been initialized yet
+        {
+            foreach (var food in Foods)
+            {
+                foodCounts[food.Id] = 0;    //initialise
+            }
+        }
     }
 
-    
+    private void IncrementCount(int foodId)
+    {
+        if (foodCounts.ContainsKey(foodId) && foodCounts[foodId] > 0)
+        {
+            foodCounts[foodId]++;   
+        }
+    }
+
+    private void DecrementCount(int foodId)
+    {
+        if (foodCounts.ContainsKey(foodId) && foodCounts[foodId] > 0)
+        {
+            foodCounts[foodId]--;
+        }
+    }
+
+    private int GetCountForFood(int foodId)
+    {
+        return foodCounts.ContainsKey(foodId) ? foodCounts[foodId] : 0;
+        //checks if foodCounts dictionary contains the specified key (foodId)
+        // If key is present in dictionary = returns true
+        //if true, code after ? before : runs 
+    }
+
+    private void ResetCounts()
+    {
+        // Reset all counts to 0
+        foreach (var food in Foods)
+        {
+            foodCounts[food.Id] = 0;
+        }
+    }
+
+    private decimal GetPriceForItem(int foodID)
+    {
+        // Retrieve the corresponding Food object based on foodID
+        var food = Foods.FirstOrDefault(f => f.Id == foodID);
+
+        if (food != null)
+        {   // Calculate the total price by multiplying quantity (count) with the cost
+            return food.FoodCost * GetCountForFood(foodID);
+        }
+        else
+        {   // Handle the case where the food with the given ID is not found
+            return 0;
+        }
+    }
+
 }

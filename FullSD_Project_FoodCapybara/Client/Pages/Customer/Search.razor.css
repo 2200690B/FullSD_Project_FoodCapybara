@@ -2,20 +2,32 @@
     text-decoration: none;
 }
 
-.post-front-page h1 {
+.search-row{
+
+}
+
+.search-img-container{
+
+}
+
+.search-img{
+
+}
+
+.search-front-page h1 {
     font-size: 20px;
     font-weight: bold;
     color: black;
     text-decoration: none;
 }
 
-.post-front-page h1 {
+.search-front-page h2 {
     color: black;
     font-size: 15px
 }
 
 
-.post-front-page p {
-    font-size: 10px;
+.search-front-page p {
+    font-size: 12px;
     color: black;
 }

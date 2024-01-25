@@ -6,10 +6,13 @@
 
 main {
     flex: 1;
-    background-color: #942e2e;
+/*    background-color: aliceblue;
+*/    background-color: #942e2e;
 }
 
 .sidebar {
+/*        background-color: aliceblue;
+*/
     background-color: #38332f;
 }
 

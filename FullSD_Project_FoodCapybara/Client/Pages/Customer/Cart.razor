@@ -1,6 +1,8 @@
 ﻿@page "/currentcart"
+@attribute [Authorize]
+@inject HttpClient _client
+@inject NavigationManager _navManager
 
-<PageTitle>My cart</PageTitle>
 
 <h3>Cart</h3>
 
@@ -8,5 +10,7 @@
 <p>This page is to show the present order items in the cart</p>
 
 @code {
-    // to add C* code
+    //[Parameter] public int Id { get; set; }
+    // Restaurant Restaurants = new Restaurant();
+    // private List<Food>? Foods = new();
 }
