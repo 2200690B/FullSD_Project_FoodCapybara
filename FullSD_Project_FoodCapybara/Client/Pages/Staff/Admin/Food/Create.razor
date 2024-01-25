@@ -1,0 +1,19 @@
+﻿@page "/foods/create/"
+@inject HttpClient _client
+@inject NavigationManager _navManager
+
+<h3 class="card-title">Create New Food</h3>
+<hr />
+<br />
+
+<FormComponent ButtonText="Create Food" OnValidSubmit="CreateFood" food="food" />
+
+@code {
+    Food food = new Food();
+
+    private async Task CreateFood()
+    {
+        await _client.PostAsJsonAsync(Endpoints.FoodsEndpoint, food);
+        _navManager.NavigateTo("/foodsindex/");
+    }
+}
