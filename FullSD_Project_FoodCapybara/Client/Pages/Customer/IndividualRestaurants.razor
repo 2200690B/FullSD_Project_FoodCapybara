@@ -74,7 +74,8 @@ else
     </table>
 }
 @* session state such that it temporarily stores data (shopping cart) during customer's session online *@'
-<div class="AddToCart">
+
+<div>
      <a class="btn btn-primary" @onclick="() => AddToCart()">
         <span class="oi oi-cart"></span> Add To Cart
     </a>
@@ -146,6 +147,7 @@ else
         else
         {   // Handle the case where the food with the given ID is not found
             return 0;
+
         }
     }
 
@@ -185,19 +187,9 @@ else
         }
     }
 
-    private decimal GetPriceForItem(int foodID)
-    {
-        // Retrieve the corresponding Food object based on foodID
-        var food = Foods.FirstOrDefault(f => f.Id == foodID);
 
-        if (food != null)
-        {   // Calculate the total price by multiplying quantity (count) with the cost
-            return food.FoodCost * GetCountForFood(foodID);
-        }
-        else
-        {   // Handle the case where the food with the given ID is not found
-            return 0;
-        }
-    }
+    
+
 
 }
+ 

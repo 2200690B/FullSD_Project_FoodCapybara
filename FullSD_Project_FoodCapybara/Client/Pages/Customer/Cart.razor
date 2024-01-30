@@ -7,50 +7,6 @@
 <h3>Shopping Cart Items</h3>
 
 
-@if (OrderItems == null)
-{
-    <div class="alert alert-info">Loading OrderItems...</div>
-}
-else
-{
-    <table class="table table-responsive">
-        <thead>
-            <tr>
-                <th>OI Id</th>
-                <th>Food Id</th>
-                <th>Food Name</th>
-                <th>OI Quantity</th>
-                @* <th>OrderID</th> *@
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var oi in OrderItems)
-            {
-                <tr>
-                    <td>@oi.Id</td>
-                    <td>@oi.Food.Id</td>
-                    <td>@oi.Food.FoodName</td>
-                    <td>@oi.OIQuantity</td>
-                    
-                </tr>
-            }
-        </tbody>
-    </table>
-
-@* @if (ShoppingCart != null && ShoppingCart.Any())
-{
-    <ul>
-        @foreach (var item in ShoppingCart)
-        {
-            <li>@item.FoodID - Quantity: @item.OIQuantity</li>
-        }
-    </ul>
-}
-else
-{
-    <p>Your shopping cart is empty.</p>
-} *@
-
 @code {
     private List<Food>? Foods = new();
     private List<OrderItem>? OrderItems= new();

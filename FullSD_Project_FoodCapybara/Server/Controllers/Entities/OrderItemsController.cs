@@ -17,40 +17,26 @@ namespace FullSD_Project_FoodCapybara.Server.Controllers.Entities
     [ApiController]
     public class OrderItemsController : ControllerBase
     {
-        //Refactored
-        //private readonly ApplicationDbContext_context;
         private readonly IUnitOfWork _unitOfWork;
 
-        //Refactored
-        //public OrderItemsController(ApplicationDbContextcontext)
         public OrderItemsController(IUnitOfWork unitOfWork)
         {
-            //Refactored
-            //_context = context
             _unitOfWork = unitOfWork;
         }
 
 
         // GET: api/OrderItems
         [HttpGet]
-        //Refactored
-        //public async Task<ActionResult<IEnumerable<OrderItem>>>GetOrderItems()
         public async Task<IActionResult> GetOrderItems()
         {
-            //Refactored
-            //return await _context.OrderItems.ToListAsync();
             var orderitems = await _unitOfWork.OrderItems.GetAll();
             return Ok(orderitems);
         }
 
         // GET: api/OrderItems/5
         [HttpGet("{id}")]
-        //Refactored
-        //public async Task<ActionResult<OrderItem>>GetOrderItem(int id)
         public async Task<IActionResult> GetOrderItem(int id)
         {
-            //Refactored
-            //var orderitem = await _context.OrderItems.FindAsync(id);
             var orderitem = await _unitOfWork.OrderItems.Get(q => q.Id == id);
 
             if (orderitem == null)
@@ -58,7 +44,6 @@ namespace FullSD_Project_FoodCapybara.Server.Controllers.Entities
                 return NotFound();
             }
 
-            //Refactored
             return Ok(orderitem);
         }
 
@@ -76,14 +61,10 @@ namespace FullSD_Project_FoodCapybara.Server.Controllers.Entities
 
             try
             {
-                //Refactored
-                //await _context.SaveChangesAsync();
                 await _unitOfWork.Save(HttpContext);
             }
             catch (DbUpdateConcurrencyException)
             {
-                //Refactored
-                //if (!OrderItemExists(id))
                 if (!await OrderItemExists(id))
                 {
                     return NotFound();
@@ -102,14 +83,10 @@ namespace FullSD_Project_FoodCapybara.Server.Controllers.Entities
         [HttpPost]
         public async Task<ActionResult<OrderItem>> PostOrderItem(OrderItem orderitem)
         {
-            //Refactored
-            //if (_context.OrderItems == null)
             if (_unitOfWork.OrderItems == null)
             {
                 return Problem("Entity set 'ApplicationDbContext.OrderItems'  is null.");
             }
-            //_context.OrderItems.Add(orderitem);
-            //await _context.SaveChangesAsync();
             await _unitOfWork.OrderItems.Insert(orderitem);
             await _unitOfWork.Save(HttpContext);
 
@@ -120,36 +97,25 @@ namespace FullSD_Project_FoodCapybara.Server.Controllers.Entities
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteOrderItem(int id)
         {
-            //Refactored
-            //if (_context.OrderItems == null)
             if (_unitOfWork.OrderItems == null)
             {
                 return NotFound();
             }
 
-            //Refactored
-            //var orderitem = await _context.OrderItems.FindAsync(id);
             var orderitem = await _unitOfWork.OrderItems.Get(q => q.Id == id);
             if (orderitem == null)
             {
                 return NotFound();
             }
 
-            //Refactored
-            //_context.OrderItems.Remove(orderitem);
-            //await _context.SaveChangesAsync();
             await _unitOfWork.OrderItems.Delete(id);
             await _unitOfWork.Save(HttpContext);
 
             return NoContent();
         }
 
-        //Refactored
-        //private bool OrderItemExists(int id)
         private async Task<bool> OrderItemExists(int id)
         {
-            //Refactored
-            //return _context.OrderItems.Any(e => e.Id == id);
             var orderitem = await _unitOfWork.OrderItems.Get(q => q.Id == id);
             return orderitem != null;
         }

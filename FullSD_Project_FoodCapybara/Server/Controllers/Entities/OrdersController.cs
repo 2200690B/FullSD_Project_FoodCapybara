@@ -16,32 +16,22 @@ namespace FullSD_Project_FoodCapybara.Server.Controllers.Entities
         //injects an instance of IUnitOfWork
         public OrdersController(IUnitOfWork unitOfWork)
         {
-            //Refactored
-            //_context = context
             _unitOfWork = unitOfWork;
         }
 
 
         // GET: api/Orders
         [HttpGet]
-        //Refactored
-        //public async Task<ActionResult<IEnumerable<Order>>>GetOrders()
         public async Task<IActionResult> GetOrders()
         {
-            //Refactored
-            //return await _context.Orders.ToListAsync();
             var orders = await _unitOfWork.Orders.GetAll();
             return Ok(orders);
         }
 
         // GET: api/Orders/5
         [HttpGet("{id}")]
-        //Refactored
-        //public async Task<ActionResult<Order>>GetOrder(int id)
         public async Task<IActionResult> GetOrder(int id)
         {
-            //Refactored
-            //var order = await _context.Orders.FindAsync(id);
             var order = await _unitOfWork.Orders.Get(q => q.Id == id);
 
             if (order == null)
@@ -49,7 +39,6 @@ namespace FullSD_Project_FoodCapybara.Server.Controllers.Entities
                 return NotFound();
             }
 
-            //Refactored
             return Ok(order);
         }
 
@@ -62,21 +51,14 @@ namespace FullSD_Project_FoodCapybara.Server.Controllers.Entities
             {
                 return BadRequest();
             }
-
-            //Refactored
-            //_context.Entry(order).State = EntityState.Modified;
             _unitOfWork.Orders.Update(order);
 
             try
             {
-                //Refactored
-                //await _context.SaveChangesAsync();
                 await _unitOfWork.Save(HttpContext);
             }
             catch (DbUpdateConcurrencyException)
             {
-                //Refactored
-                //if (!OrderExists(id))
                 if (!await OrderExists(id))
                 {
                     return NotFound();
@@ -121,36 +103,25 @@ namespace FullSD_Project_FoodCapybara.Server.Controllers.Entities
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteOrder(int id)
         {
-            //Refactored
-            //if (_context.Orders == null)
             if (_unitOfWork.Orders == null)
             {
                 return NotFound();
             }
 
-            //Refactored
-            //var order = await _context.Orders.FindAsync(id);
             var order = await _unitOfWork.Orders.Get(q => q.Id == id);
             if (order == null)
             {
                 return NotFound();
             }
 
-            //Refactored
-            //_context.Orders.Remove(order);
-            //await _context.SaveChangesAsync();
             await _unitOfWork.Orders.Delete(id);
             await _unitOfWork.Save(HttpContext);
 
             return NoContent();
         }
 
-        //Refactored
-        //private bool OrderExists(int id)
         private async Task<bool> OrderExists(int id)
         {
-            //Refactored
-            //return _context.Orders.Any(e => e.Id == id);
             var order = await _unitOfWork.Orders.Get(q => q.Id == id);
             return order != null;
         }

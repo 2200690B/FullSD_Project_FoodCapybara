@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace FullSD_Project_FoodCapybara.Server.Migrations
 {
     /// <inheritdoc />
-    public partial class AddedImageAttribute_ToRestaurants : Migration
+    public partial class updatedDomainEntities : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -301,7 +301,7 @@ namespace FullSD_Project_FoodCapybara.Server.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CustId = table.Column<int>(type: "int", nullable: false),
                     CustomerId = table.Column<int>(type: "int", nullable: true),
-                    StaffId = table.Column<int>(type: "int", nullable: false),
+                    StaffId = table.Column<int>(type: "int", nullable: true),
                     OrderPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     OrderDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     OrderStatus = table.Column<string>(type: "nvarchar(max)", nullable: true)
@@ -318,8 +318,7 @@ namespace FullSD_Project_FoodCapybara.Server.Migrations
                         name: "FK_Orders_Staffs_StaffId",
                         column: x => x.StaffId,
                         principalTable: "Staffs",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -408,8 +407,8 @@ namespace FullSD_Project_FoodCapybara.Server.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "3700efa7-66dc-47f0-860f-e506d04102e4", 0, "17a66cc3-eaa4-46dd-a56a-3bdcccbc6454", "staff@localhost.com", false, "Staff", "User", false, null, "STAFF@LOCALHOST.COM", "STAFF@LOCALHOST.COM", "AQAAAAIAAYagAAAAEAaAthk1lF2oJYvfJ8MQEbYXwWqEszUrKQcTy3OcKDIDcdQz6IjM9m4Q95D69rNnTQ==", null, false, "668ad492-ab5f-4c1b-8b9f-f8767b9ef078", false, "staff@localhost.com" },
-                    { "3781efa7-66dc-47f0-860f-e506d04102e4", 0, "1406cb75-7430-491d-a75b-dfbc93a885c1", "admin@localhost.com", false, "Admin", "User", false, null, "ADMIN@LOCALHOST.COM", "ADMIN@LOCALHOST.COM", "AQAAAAIAAYagAAAAEI9Pz+omoYr9/JtTaEjgP5ICmPpLMfmdogWE0LhIY47RLvET0EMRASZqBvdUC5GKiA==", null, false, "ec3374a8-b96c-49b7-b370-226267275b46", false, "admin@localhost.com" }
+                    { "3700efa7-66dc-47f0-860f-e506d04102e4", 0, "5c4361f9-5c0c-4f2c-889b-7111e04e940f", "staff@localhost.com", false, "Staff", "User", false, null, "STAFF@LOCALHOST.COM", "STAFF@LOCALHOST.COM", "AQAAAAIAAYagAAAAEOPcoLnOPgkJ5TMMkca0ZMy/OuxobkgSLtWjVx8lY+u2Qf6UjI7N5kU1gGn64Bpucw==", null, false, "678c0527-7fc2-4b54-aa72-d98bdbf272d5", false, "staff@localhost.com" },
+                    { "3781efa7-66dc-47f0-860f-e506d04102e4", 0, "0d266783-7ab5-45c9-a8e3-66984c1dde1f", "admin@localhost.com", false, "Admin", "User", false, null, "ADMIN@LOCALHOST.COM", "ADMIN@LOCALHOST.COM", "AQAAAAIAAYagAAAAELVLhTSNgVWkpnmgZ4WDGeXxKc2Tu2YbTKuzKhvciCAAXF1GuhvE686sdJ98v0280w==", null, false, "61c1432f-c1c3-445d-85c5-77ed33ac86db", false, "admin@localhost.com" }
                 });
 
             migrationBuilder.InsertData(
@@ -417,8 +416,8 @@ namespace FullSD_Project_FoodCapybara.Server.Migrations
                 columns: new[] { "Id", "RestAddress", "RestCategory", "RestDescription", "RestImage", "RestName" },
                 values: new object[,]
                 {
-                    { 1, "TastyVille Street 69 Papa's Mall #01-123", "Fast Food", "Be it for delivery or takeaway from the nearest Papa's pizzeria outlet, we have pizza makers ready to make fresh and hot pizzas to satisfy your cravings.  Enjoy freshly made and oven-baked pizzas by Papa's Pizzeria!", null, "Papa's Pizzeria" },
-                    { 2, "TastyVille Street 69 Papa's Mall #01-124", "Bakeries", "Experience the art of baking at Papa's Bakeria, where each pastry is crafted with passion and expertise. Indulge in our delightful cakes, fresh bread, and savory pastries, we guarantee a journey of exquisite flavors and quality ingredients! Enjoy the warmth of our ovens as we bring you the finest baked goods in TastyVille.", null, "Papa's Bakeria" }
+                    { 1, "TastyVille Street 69 Papa's Mall #01-123", "Fast Food", "Be it for delivery or takeaway from the nearest Papa's pizzeria outlet, we have pizza makers ready to make fresh and hot pizzas to satisfy your cravings.  Enjoy freshly made and oven-baked pizzas by Papa's Pizzeria!", "Rest1.png", "Papa's Pizzeria" },
+                    { 2, "TastyVille Street 69 Papa's Mall #01-124", "Bakeries", "Experience the art of baking at Papa's Bakeria, where each pastry is crafted with passion and expertise. Indulge in our delightful cakes, fresh bread, and savory pastries, we guarantee a journey of exquisite flavors and quality ingredients! Enjoy the warmth of our ovens as we bring you the finest baked goods in TastyVille.", "Rest2.png", "Papa's Bakeria" }
                 });
 
             migrationBuilder.InsertData(

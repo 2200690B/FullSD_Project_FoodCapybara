@@ -238,7 +238,7 @@ namespace FullSD_Project_FoodCapybara.Server.Migrations
                         {
                             Id = "3781efa7-66dc-47f0-860f-e506d04102e4",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "4a1b9010-46b6-4ecd-b5f2-c9bb67e4d663",
+                            ConcurrencyStamp = "0d266783-7ab5-45c9-a8e3-66984c1dde1f",
                             Email = "admin@localhost.com",
                             EmailConfirmed = false,
                             FirstName = "Admin",
@@ -246,9 +246,9 @@ namespace FullSD_Project_FoodCapybara.Server.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@LOCALHOST.COM",
                             NormalizedUserName = "ADMIN@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAELxG852va/CQuU3QG1VzT4RwFvCjzHNHBCL1nwO3YgFGSTWLL21LAbtH+vT0+TFHRA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAELVLhTSNgVWkpnmgZ4WDGeXxKc2Tu2YbTKuzKhvciCAAXF1GuhvE686sdJ98v0280w==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "1e51f464-01b8-47ce-abcd-f4dd2b7b7f78",
+                            SecurityStamp = "61c1432f-c1c3-445d-85c5-77ed33ac86db",
                             TwoFactorEnabled = false,
                             UserName = "admin@localhost.com"
                         },
@@ -256,7 +256,7 @@ namespace FullSD_Project_FoodCapybara.Server.Migrations
                         {
                             Id = "3700efa7-66dc-47f0-860f-e506d04102e4",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "fc32e169-bdc1-4d01-a561-3ea16c12a886",
+                            ConcurrencyStamp = "5c4361f9-5c0c-4f2c-889b-7111e04e940f",
                             Email = "staff@localhost.com",
                             EmailConfirmed = false,
                             FirstName = "Staff",
@@ -264,9 +264,9 @@ namespace FullSD_Project_FoodCapybara.Server.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "STAFF@LOCALHOST.COM",
                             NormalizedUserName = "STAFF@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEGl9zl4LHDv3fwveOVOa1P1dPOHuiErquz9vSPcMK94yV2eGDwXoE3N400IVnvxwTA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEOPcoLnOPgkJ5TMMkca0ZMy/OuxobkgSLtWjVx8lY+u2Qf6UjI7N5kU1gGn64Bpucw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "ffa53d74-f7b1-4487-9f4f-5a5d193a2f55",
+                            SecurityStamp = "678c0527-7fc2-4b54-aa72-d98bdbf272d5",
                             TwoFactorEnabled = false,
                             UserName = "staff@localhost.com"
                         });
@@ -448,7 +448,7 @@ namespace FullSD_Project_FoodCapybara.Server.Migrations
                     b.Property<string>("OrderStatus")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("StaffId")
+                    b.Property<int?>("StaffId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -474,7 +474,8 @@ namespace FullSD_Project_FoodCapybara.Server.Migrations
                     b.Property<int>("OIQuantity")
                         .HasColumnType("int");
 
-                    b.Property<int>("OrderId")
+                    b.Property<int?>("OrderId")
+                        .IsRequired()
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -807,9 +808,7 @@ namespace FullSD_Project_FoodCapybara.Server.Migrations
 
                     b.HasOne("FullSD_Project_FoodCapybara.Shared.Domain.Staff", "Staff")
                         .WithMany()
-                        .HasForeignKey("StaffId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("StaffId");
 
                     b.Navigation("Customer");
 
