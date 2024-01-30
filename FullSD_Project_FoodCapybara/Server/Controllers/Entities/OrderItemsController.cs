@@ -71,9 +71,7 @@ namespace FullSD_Project_FoodCapybara.Server.Controllers.Entities
             {
                 return BadRequest();
             }
-
-            //Refactored
-            //_context.Entry(orderitem).State = EntityState.Modified;
+;
             _unitOfWork.OrderItems.Update(orderitem);
 
             try

@@ -50,6 +50,7 @@ namespace FullSD_Project_FoodCapybara.Server.Repository
             GC.SuppressFinalize(this);
         }
 
+        //to intercept changes made to entities before saving them to the database
         public async Task Save(HttpContext httpContext)
         {
             //To be implemented
@@ -58,6 +59,19 @@ namespace FullSD_Project_FoodCapybara.Server.Repository
             var entries = _context.ChangeTracker.Entries()
                 .Where(q => q.State == EntityState.Modified ||
                     q.State == EntityState.Added);
+
+            foreach ( var entry in entries )
+            {
+                ((Order)entry.Entity).OrderDate = DateTime.Now;
+                ((Payment)entry.Entity).PaymentDateTime = DateTime.Now;
+                ((Review)entry.Entity).ReviewDateTime = DateTime.Now;
+                if (entry.State == EntityState.Added)
+                {
+                    ((Order)entry.Entity).OrderDate = DateTime.Now;
+                    ((Payment)entry.Entity).PaymentDateTime = DateTime.Now;
+                    ((Review)entry.Entity).ReviewDateTime = DateTime.Now;
+                }
+            }
 
             /*foreach (var entry in entries)
             {

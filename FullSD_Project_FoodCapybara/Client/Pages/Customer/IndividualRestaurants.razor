@@ -73,20 +73,25 @@ else
         </tbody>
     </table>
 }
-
+@* session state such that it temporarily stores data (shopping cart) during customer's session online *@'
 <div class="AddToCart">
-@*     <p> add to cart </p>
- *@    <a class="btn btn-primary" @onclick="() => ResetCounts()">
+     <a class="btn btn-primary" @onclick="() => AddToCart()">
         <span class="oi oi-cart"></span> Add To Cart
     </a>
 </div>
+
 
 
 @code {
     [Parameter] public int Id { get; set; }
     Restaurant Restaurants = new Restaurant();
     private List<Food>? Foods = new();
+
     private Dictionary<int, int> foodCounts = new Dictionary<int, int>();
+    private List<OrderItem> ShoppingCart = new List<OrderItem>(); 
+
+    OrderItem orderitem = new OrderItem();
+
 
     protected async override Task OnInitializedAsync()
     {
@@ -105,19 +110,54 @@ else
         }
     }
 
-    private void IncrementCount(int foodId)
+    private async void  AddToCart()
     {
-        if (foodCounts.ContainsKey(foodId) && foodCounts[foodId] > 0)
+        // Add the current state of foodCounts to the Cart (OrderItem) kvp -> key-value-pair
+        foreach (var kvp in foodCounts)
         {
-            foodCounts[foodId]++;   
+            if (kvp.Value > 0)  //those w pos quant, creates a new OrderItem & adds to ShoppingCart list
+            {
+                // Create a new OrderItem
+                var orderItem = new OrderItem { FoodID = kvp.Key, OIQuantity = kvp.Value };
+
+                // Send the OrderItem to the server
+                await _client.PostAsJsonAsync(Endpoints.OrderItemsEndpoint, orderItem);
+
+                // Add the created OrderItem to the ShoppingCart list
+                ShoppingCart.Add(orderItem);
+            }   //shopping cart = temporary collection
+        }
+        //ResetCounts();  // Reset the counts to 0
+        _navManager.NavigateTo("/currentcart");
+    }
+
+
+
+    
+    private decimal GetPriceForItem(int foodID)
+    {
+        // Retrieve the corresponding Food object based on foodID
+        var food = Foods.FirstOrDefault(f => f.Id == foodID);
+
+        if (food != null)
+        {   // Calculate the total price by multiplying quantity (count) with the cost
+            return food.FoodCost * GetCountForFood(foodID);
+        }
+        else
+        {   // Handle the case where the food with the given ID is not found
+            return 0;
         }
     }
 
-    private void DecrementCount(int foodId)
+    private void IncrementCount(int foodId)
     {
-        if (foodCounts.ContainsKey(foodId) && foodCounts[foodId] > 0)
+        if (!foodCounts.ContainsKey(foodId))
         {
-            foodCounts[foodId]--;
+            foodCounts[foodId] = 1; // Initialize count to 1 if the key is not present
+        }
+        else
+        {
+            foodCounts[foodId]++;
         }
     }
 
@@ -128,10 +168,17 @@ else
         // If key is present in dictionary = returns true
         //if true, code after ? before : runs 
     }
+    private void DecrementCount(int foodId)
+    {
+        if (foodCounts.ContainsKey(foodId) && foodCounts[foodId] > 0)
+        {
+            foodCounts[foodId]--;
+        }
+    }
 
     private void ResetCounts()
     {
-        // Reset all counts to 0
+        // Reset the counts to 0 after saving to session
         foreach (var food in Foods)
         {
             foodCounts[food.Id] = 0;

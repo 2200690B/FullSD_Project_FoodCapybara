@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <Content Remove="Pages\Counter.razor" />
+    <Content Remove="Pages\Customer\CartComponent.razor" />
     <Content Remove="Pages\Customer\IndividualRestaurant.razor" />
     <Content Remove="Pages\Customer\Restaurant.razor" />
     <Content Remove="Pages\Customer\Test.razor" />

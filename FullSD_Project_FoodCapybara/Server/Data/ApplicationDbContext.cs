@@ -37,17 +37,26 @@ namespace FullSD_Project_FoodCapybara.Server.Data
         {
             base.OnModelCreating(modelBuilder);
 
+            // Configure relationship btwn Food & Restaurant
             modelBuilder.Entity<Food>()
                 .HasOne(c => c.Restaurant)
                 .WithMany(u => u.Menu)
                 .HasForeignKey(u => u.RestId)
                 .IsRequired();
 
+            // Food & OrderItem
+            modelBuilder.Entity<OrderItem>()
+                .HasOne(oi => oi.Food)
+                .WithMany() // From Order, cannot see OrderItems (no naviagtion property)
+                .HasForeignKey(oi => oi.FoodID)
+                .IsRequired();
 
-/*          
-            
-            modelBuilder.ApplyConfiguration(new StaffSeedConfiguration());
-                        */
+            // Order & OrderItem
+            modelBuilder.Entity<OrderItem>()
+                .HasOne(oi => oi.Order)
+                .WithMany(o => o.OrderItems)  // From Order can see OrderItems
+                .HasForeignKey(oi => oi.OrderId)
+                .IsRequired();
             
             
             

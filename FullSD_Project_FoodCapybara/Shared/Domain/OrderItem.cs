@@ -8,7 +8,7 @@ namespace FullSD_Project_FoodCapybara.Shared.Domain
 {
     public class OrderItem : BaseDomainModel
     {
-        public int OrderId { get; set; }
+        public int? OrderId { get; set; }
         public virtual Order? Order { get; set; }
         public int FoodID { get; set; }
         public virtual Food? Food{ get; set; }
