@@ -72,10 +72,10 @@ namespace FullSD_Project_FoodCapybara.Server.Data
                 .Property(p => p.FoodCost)
                 .HasColumnType("decimal(18, 2)");
 
-            modelBuilder.Entity<Customer>()
+            /*modelBuilder.Entity<Customer>()
                 .Property(p => p.CustPayment)
                 .HasColumnType("decimal(18, 2)");
-
+*/
             // Add any other configurations or relationships 
             modelBuilder.ApplyConfiguration(new FoodSeedConfiguration());
             modelBuilder.ApplyConfiguration(new RestaurantSeedConfiguration());

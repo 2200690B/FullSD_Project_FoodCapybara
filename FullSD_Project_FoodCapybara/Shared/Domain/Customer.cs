@@ -8,13 +8,13 @@ namespace FullSD_Project_FoodCapybara.Shared.Domain
 {
     public class Customer : BaseDomainModel
     {
-        public string? CustUsername { get; set; }
-        public string? CustPassword { get; set; }
+        public string? FirstName { get; set; }
+        public string? LastName { get; set; }
         public string? CustAddress { get; set; }
         public string? CustEmail{ get; set;}
-        public int CustPhone { get; set;}
-        public decimal CustPayment { get; set; }
-        public virtual List<Order>? CustOrderHistory { get; set; }
+        public string? CustPhone { get; set;}
+        //public decimal CustPayment { get; set; }
+        //public virtual List<Order>? CustOrderHistory { get; set; }
     }
 }
 
