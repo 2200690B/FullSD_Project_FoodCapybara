@@ -12,8 +12,13 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FullSD_Project_FoodCapybara.Server.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240119074630_Edited_FoodsController")]
-    partial class Edited_FoodsController
+<<<<<<<< HEAD:FullSD_Project_FoodCapybara/Server/Migrations/20240127151746_AddedNewImageAttribute_ToRestaurant.Designer.cs
+    [Migration("20240127151746_AddedNewImageAttribute_ToRestaurant.cs")]
+    partial class AddedNewImageAttribute_ToRestaurantcs
+========
+    [Migration("20240130112309_updatedDomainEntities")]
+    partial class updatedDomainEntities
+>>>>>>>> b67cb659be66211f9e1253e509868e42c202f1ff:FullSD_Project_FoodCapybara/Server/Migrations/20240130112309_updatedDomainEntities.Designer.cs
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -241,7 +246,11 @@ namespace FullSD_Project_FoodCapybara.Server.Migrations
                         {
                             Id = "3781efa7-66dc-47f0-860f-e506d04102e4",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "4a1b9010-46b6-4ecd-b5f2-c9bb67e4d663",
+<<<<<<<< HEAD:FullSD_Project_FoodCapybara/Server/Migrations/20240127151746_AddedNewImageAttribute_ToRestaurant.Designer.cs
+                            ConcurrencyStamp = "ea6b4015-57d6-4718-be42-4ca6ec9fac86",
+========
+                            ConcurrencyStamp = "0d266783-7ab5-45c9-a8e3-66984c1dde1f",
+>>>>>>>> b67cb659be66211f9e1253e509868e42c202f1ff:FullSD_Project_FoodCapybara/Server/Migrations/20240130112309_updatedDomainEntities.Designer.cs
                             Email = "admin@localhost.com",
                             EmailConfirmed = false,
                             FirstName = "Admin",
@@ -249,9 +258,15 @@ namespace FullSD_Project_FoodCapybara.Server.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@LOCALHOST.COM",
                             NormalizedUserName = "ADMIN@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAELxG852va/CQuU3QG1VzT4RwFvCjzHNHBCL1nwO3YgFGSTWLL21LAbtH+vT0+TFHRA==",
+<<<<<<<< HEAD:FullSD_Project_FoodCapybara/Server/Migrations/20240127151746_AddedNewImageAttribute_ToRestaurant.Designer.cs
+                            PasswordHash = "AQAAAAIAAYagAAAAECOJhbXs5EDwm/OpzLSxOeXonsTyydR+hWfDq9Qxww37T3pjswUHHefd3U4U/jYBNQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "1e51f464-01b8-47ce-abcd-f4dd2b7b7f78",
+                            SecurityStamp = "ff2c700c-78cb-4172-854a-fb1803d40e7b",
+========
+                            PasswordHash = "AQAAAAIAAYagAAAAELVLhTSNgVWkpnmgZ4WDGeXxKc2Tu2YbTKuzKhvciCAAXF1GuhvE686sdJ98v0280w==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "61c1432f-c1c3-445d-85c5-77ed33ac86db",
+>>>>>>>> b67cb659be66211f9e1253e509868e42c202f1ff:FullSD_Project_FoodCapybara/Server/Migrations/20240130112309_updatedDomainEntities.Designer.cs
                             TwoFactorEnabled = false,
                             UserName = "admin@localhost.com"
                         },
@@ -259,7 +274,11 @@ namespace FullSD_Project_FoodCapybara.Server.Migrations
                         {
                             Id = "3700efa7-66dc-47f0-860f-e506d04102e4",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "fc32e169-bdc1-4d01-a561-3ea16c12a886",
+<<<<<<<< HEAD:FullSD_Project_FoodCapybara/Server/Migrations/20240127151746_AddedNewImageAttribute_ToRestaurant.Designer.cs
+                            ConcurrencyStamp = "aa3064ab-0c2c-4e4e-ae8f-7821e40d31b6",
+========
+                            ConcurrencyStamp = "5c4361f9-5c0c-4f2c-889b-7111e04e940f",
+>>>>>>>> b67cb659be66211f9e1253e509868e42c202f1ff:FullSD_Project_FoodCapybara/Server/Migrations/20240130112309_updatedDomainEntities.Designer.cs
                             Email = "staff@localhost.com",
                             EmailConfirmed = false,
                             FirstName = "Staff",
@@ -267,9 +286,15 @@ namespace FullSD_Project_FoodCapybara.Server.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "STAFF@LOCALHOST.COM",
                             NormalizedUserName = "STAFF@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEGl9zl4LHDv3fwveOVOa1P1dPOHuiErquz9vSPcMK94yV2eGDwXoE3N400IVnvxwTA==",
+<<<<<<<< HEAD:FullSD_Project_FoodCapybara/Server/Migrations/20240127151746_AddedNewImageAttribute_ToRestaurant.Designer.cs
+                            PasswordHash = "AQAAAAIAAYagAAAAEOF7yjOlteCz9oeqgGEEJ4JMcrmZ5X9T4eXk+hUehzjBMs+clu40O59XvdUGhjPtaw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "ffa53d74-f7b1-4487-9f4f-5a5d193a2f55",
+                            SecurityStamp = "c43aad59-267b-45da-83e4-092a7a01aabf",
+========
+                            PasswordHash = "AQAAAAIAAYagAAAAEOPcoLnOPgkJ5TMMkca0ZMy/OuxobkgSLtWjVx8lY+u2Qf6UjI7N5kU1gGn64Bpucw==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "678c0527-7fc2-4b54-aa72-d98bdbf272d5",
+>>>>>>>> b67cb659be66211f9e1253e509868e42c202f1ff:FullSD_Project_FoodCapybara/Server/Migrations/20240130112309_updatedDomainEntities.Designer.cs
                             TwoFactorEnabled = false,
                             UserName = "staff@localhost.com"
                         });
@@ -451,7 +476,7 @@ namespace FullSD_Project_FoodCapybara.Server.Migrations
                     b.Property<string>("OrderStatus")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("StaffId")
+                    b.Property<int?>("StaffId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -477,7 +502,8 @@ namespace FullSD_Project_FoodCapybara.Server.Migrations
                     b.Property<int>("OIQuantity")
                         .HasColumnType("int");
 
-                    b.Property<int>("OrderId")
+                    b.Property<int?>("OrderId")
+                        .IsRequired()
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -524,6 +550,15 @@ namespace FullSD_Project_FoodCapybara.Server.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<byte[]>("FileContent")
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<string>("FileName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImageUrl")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("RestAddress")
                         .HasColumnType("nvarchar(max)");
 
@@ -531,9 +566,6 @@ namespace FullSD_Project_FoodCapybara.Server.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("RestDescription")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("RestImage")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("RestName")
@@ -547,6 +579,7 @@ namespace FullSD_Project_FoodCapybara.Server.Migrations
                         new
                         {
                             Id = 1,
+                            FileName = "Rest1.png",
                             RestAddress = "TastyVille Street 69 Papa's Mall #01-123",
                             RestCategory = "Fast Food",
                             RestDescription = "Be it for delivery or takeaway from the nearest Papa's pizzeria outlet, we have pizza makers ready to make fresh and hot pizzas to satisfy your cravings.  Enjoy freshly made and oven-baked pizzas by Papa's Pizzeria!",
@@ -556,6 +589,7 @@ namespace FullSD_Project_FoodCapybara.Server.Migrations
                         new
                         {
                             Id = 2,
+                            FileName = "Rest2.png",
                             RestAddress = "TastyVille Street 69 Papa's Mall #01-124",
                             RestCategory = "Bakeries",
                             RestDescription = "Experience the art of baking at Papa's Bakeria, where each pastry is crafted with passion and expertise. Indulge in our delightful cakes, fresh bread, and savory pastries, we guarantee a journey of exquisite flavors and quality ingredients! Enjoy the warmth of our ovens as we bring you the finest baked goods in TastyVille.",
@@ -810,9 +844,7 @@ namespace FullSD_Project_FoodCapybara.Server.Migrations
 
                     b.HasOne("FullSD_Project_FoodCapybara.Shared.Domain.Staff", "Staff")
                         .WithMany()
-                        .HasForeignKey("StaffId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("StaffId");
 
                     b.Navigation("Customer");
 

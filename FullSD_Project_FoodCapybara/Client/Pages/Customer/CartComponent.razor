@@ -1,0 +1,64 @@
+﻿@inject HttpClient _client
+
+<EditForm Model="@order" OnValidSubmit="@OnValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="form-group">
+        <label>RestName: </label>
+        <div>
+            <InputText @bind-Value="@restaurant.RestName" class="form-control" />
+            <ValidationMessage For="@(() => restaurant.RestName)" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>RestAddress: </label>
+        <div>
+            <InputText @bind-Value="@restaurant.RestAddress" class="form-control" />
+            <ValidationMessage For="@(() => restaurant.RestAddress)" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>RestDescription: </label>
+        <div>
+            <InputText @bind-Value="@restaurant.RestDescription" class="form-control" />
+            <ValidationMessage For="@(() => restaurant.RestDescription)" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>RestCategory: </label>
+        <div>
+            <InputText @bind-Value="@restaurant.RestCategory" class="form-control" />
+            <ValidationMessage For="@(() => restaurant.RestCategory)" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>RestImage: </label>
+        <div>
+            <InputText @bind-Value="@restaurant.RestImage" class="form-control" />
+            <ValidationMessage For="@(() => restaurant.RestImage)" />
+        </div>
+    </div>
+
+    <br />
+
+    <button type="submit" class="btn btn-success btn-block">
+        @ButtonText
+    </button>
+    <BackToList Target="restaurantsindex" />
+    <br />
+
+</EditForm>
+
+@code {
+    // [Parameter] public bool Disabled { get; set; } = false;
+    [Parameter] public string ButtonText { get; set; } = "Save";
+    [Parameter] public EventCallback OnValidSubmit { get; set; }
+
+    Order Orders = new Order();
+    [Parameter] public Order order { get; set; }
+}

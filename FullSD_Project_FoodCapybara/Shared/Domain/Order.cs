@@ -10,7 +10,7 @@ namespace FullSD_Project_FoodCapybara.Shared.Domain
     {
         public int CustId { get; set; }  //not needed but added to make it more explicit to know what id you are using
         public virtual Customer? Customer { get; set; } //acts as a constraint
-        public int StaffId { get; set; }
+        public int? StaffId { get; set; }
         public virtual Staff? Staff { get; set; }   //'virtual' acts does Lazy Loading
         public decimal OrderPrice { get; set; }
         public DateTime OrderDate { get; set; }
