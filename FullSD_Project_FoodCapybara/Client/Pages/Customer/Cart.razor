@@ -4,13 +4,63 @@
 @inject NavigationManager _navManager
 
 
-<h3>Cart</h3>
+<h3>Shopping Cart Items</h3>
 
-<h5> This is the cart page</h5>
-<p>This page is to show the present order items in the cart</p>
 
 @code {
-    //[Parameter] public int Id { get; set; }
-    // Restaurant Restaurants = new Restaurant();
-    // private List<Food>? Foods = new();
+    private List<Food>? Foods = new();
+    private List<OrderItem>? OrderItems= new();
+
+    protected async override Task OnInitializedAsync()
+    {
+        OrderItems = await _client.GetFromJsonAsync<List<OrderItem>>($"{Endpoints.OrderItemsEndpoint}");
+    }
+
+
+
+
+
+
+
+    //Use cascading parameters to pass the shopping cart state from 
+    //IndividualRestaurants.razor to cart.razor
+    // [Parameter] public List<OrderItem> ShoppingCart { get; set; }
+    // //private List<OrderItem> ShoppingCart = new List<OrderItem>();
+
+    // Order order = new Order();
+
+    // protected async override Task OnInitializedAsync()
+    // {
+    //     ShoppingCart = new List<OrderItem>();
+    //     // Other initialization code...
+    // }
+
+    // private async Task CreateOrder()
+    // {
+    //     if (ShoppingCart != null && ShoppingCart.Any())
+    //     {   // Create an order based on the items in the shopping cart
+    //         order.OrderItems = ShoppingCart.ToList();
+
+    //         // Call the API to create an order
+    //         var response = await _client.PostAsJsonAsync(Endpoints.OrdersEndpoint, order);
+
+    //         if (response.IsSuccessStatusCode)
+    //         {   // Reset the shopping cart after successfully creating the order
+    //             ShoppingCart.Clear();
+    //         }
+    //         else
+    //         {
+    //             // Handle the case where order creation fails
+    //             // You might want to add error handling logic here
+    //         }
+    //     }
+    //     else
+    //     {
+    //         // Handle the case where the shopping cart is empty
+    //     }
+    }
+    
+
+    
+
 }

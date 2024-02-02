@@ -454,7 +454,7 @@ namespace FullSD_Project_FoodCapybara.Server.Migrations
                     b.Property<string>("OrderStatus")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("StaffId")
+                    b.Property<int?>("StaffId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -480,7 +480,8 @@ namespace FullSD_Project_FoodCapybara.Server.Migrations
                     b.Property<int>("OIQuantity")
                         .HasColumnType("int");
 
-                    b.Property<int>("OrderId")
+                    b.Property<int?>("OrderId")
+                        .IsRequired()
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -825,9 +826,7 @@ namespace FullSD_Project_FoodCapybara.Server.Migrations
 
                     b.HasOne("FullSD_Project_FoodCapybara.Shared.Domain.Staff", "Staff")
                         .WithMany()
-                        .HasForeignKey("StaffId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("StaffId");
 
                     b.Navigation("Customer");
 

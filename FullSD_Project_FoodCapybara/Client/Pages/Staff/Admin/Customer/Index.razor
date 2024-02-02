@@ -1,0 +1,87 @@
+﻿@page "/customersindex/"
+@inject HttpClient _client
+@inject IJSRuntime js
+@attribute [Authorize]
+
+<!--Provides methods for sending Http requests, & recieving HTTP responses from a resource identified by a URI (POSTMAN)    Instance is registered in Program.cs .
+<!-- Pass the IJSRuntime into the singleton service's implementation as an argument of its mothod calls instead of injecting it into the singleton -->
+<!-- customers sure user is logged in before accessing -->
+
+<h3 class="card-title">Customers</h3>
+
+<a href="/customers/create" class="btn btn-secondary">
+    <span class="oi oi-plus"></span>
+    Create New Customer
+</a>
+<br />
+<br />
+
+@if (Customers == null)
+{
+    <div class="alert alert-info">Loading Customers...</div>
+}
+else
+{
+    <table class="table table-responsive">
+        <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Address</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Orders</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var customer in Customers)
+            {
+                <tr>
+                    <td>@customer.FirstName</td>
+                    <td>@customer.LastName</td>
+                    <td>@customer.CustAddress</td>
+                    <td>@customer.CustEmail</td>
+                    <td>@customer.CustPhone</td>
+                    <td>@customer.CustPhone</td>
+                    <td>
+                        <a href="/customers/view/@customer.Id" class="btn btn-primary">
+                            <span class="oi oi-book"></span>
+                        </a><!-- View -->
+                        <a href="/customers/edit/@customer.Id" class="btn btn-warning">
+                            <span class="oi oi-pencil"></span>
+                        </a><!-- Edit -->
+                        <button class="btn btn-danger" @onclick="@(()=>Delete(customer.Id))">
+                            <span class="oi oi-delete"></span>
+                        </button> <!-- Delete -->
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private List<Customer>? Customers;
+    // = new();
+
+    protected async override Task OnInitializedAsync()
+    {
+        Customers = await _client.GetFromJsonAsync<List<Customer>>($"{Endpoints.CustomersEndpoint}");
+    }
+
+    async Task Delete(int customerId)
+    {
+        if (Customers != null)
+        {
+            var customer = Customers.First(q => q.Id == customerId);
+            var confirm = await js.InvokeAsync<bool>("confirm", $"Do you want to delete {customer.FirstName}?");
+            if (confirm)
+            {
+                await _client.DeleteAsync($"{Endpoints.CustomersEndpoint}/{customerId}");
+                await OnInitializedAsync();
+            }
+        }
+    }
+
+}
