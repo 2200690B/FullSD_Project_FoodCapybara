@@ -5,43 +5,52 @@
     <ValidationSummary />
 
     <fieldset disabled="@Disabled">
-    <div class="form-group">
-        <label>RestName: </label>
-        <div>
-            <InputText @bind-Value="@restaurant.RestName" class="form-control" />
-            <ValidationMessage For="@(() => restaurant.RestName)" />
+        <div class="form-group">
+            <label>RestName: </label>
+            <div>
+                <InputText @bind-Value="@restaurant.RestName" class="form-control" />
+                <ValidationMessage For="@(() => restaurant.RestName)" />
+            </div>
         </div>
-    </div>
 
-    <div class="form-group">
-        <label>RestAddress: </label>
-        <div>
-            <InputText @bind-Value="@restaurant.RestAddress" class="form-control" />
-            <ValidationMessage For="@(() => restaurant.RestAddress)" />
+        <div class="form-group">
+            <label>RestAddress: </label>
+            <div>
+                <InputText @bind-Value="@restaurant.RestAddress" class="form-control" />
+                <ValidationMessage For="@(() => restaurant.RestAddress)" />
+            </div>
         </div>
-    </div>
 
-    <div class="form-group">
-        <label>RestDescription: </label>
-        <div>
-            <InputText @bind-Value="@restaurant.RestDescription" class="form-control" />
-            <ValidationMessage For="@(() => restaurant.RestDescription)" />
+        <div class="form-group">
+            <label>RestDescription: </label>
+            <div>
+                <InputText @bind-Value="@restaurant.RestDescription" class="form-control" />
+                <ValidationMessage For="@(() => restaurant.RestDescription)" />
+            </div>
         </div>
-    </div>
 
-    <div class="form-group">
-        <label>RestCategory: </label>
-        <div>
-            <InputText @bind-Value="@restaurant.RestCategory" class="form-control" />
-            <ValidationMessage For="@(() => restaurant.RestCategory)" />
+        <div class="form-group">
+            <label>RestCategory: </label>
+            <div>
+                <InputText @bind-Value="@restaurant.RestCategory" class="form-control" />
+                <ValidationMessage For="@(() => restaurant.RestCategory)" />
+            </div>
         </div>
-    </div>
 
-    <div class="form-group">
-        <label>RestImage: </label>
-        <div>
-            <InputText @bind-Value="@restaurant.RestImage" class="form-control" />
-            <ValidationMessage For="@(() => restaurant.RestImage)" />
+        <div class="form-group">
+            <label>Select Photo: </label>
+            <div>
+                <InputFile OnChange="@OnInputFileChange" multiple />
+                <ValidationMessage For="@(() => restaurant.FileName)" />
+
+                <tr>
+                    @foreach (var imgsrc in imageUrls)
+                    {
+                        <td>
+                            <img src="@imgsrc">
+                        </td>
+                    }
+                </tr>
         </div>
     </div>
     </fieldset>
@@ -64,4 +73,21 @@
     [Parameter] public Restaurant restaurant { get; set; }
     [Parameter] public string ButtonText { get; set; } = "Save";
     [Parameter] public EventCallback OnValidSubmit { get; set; }
+    List<string> imageUrls = new List<string>();
+    IReadOnlyList<IBrowserFile> selectedFiles;
+
+    private async Task OnInputFileChange(InputFileChangeEventArgs e)
+    {
+        selectedFiles = e.GetMultipleFiles();
+        restaurant.FileName = string.Empty;
+        foreach (var imageFile in selectedFiles)
+        {
+            var resizedImage = await imageFile.RequestImageFileAsync("image/jpg", 100, 100);
+            var buffer = new byte[resizedImage.Size];
+            await resizedImage.OpenReadStream().ReadAsync(buffer);
+            var imgData = $"data:image/jpg;base64,{Convert.ToBase64String(buffer)}";
+            imageUrls.Add(imgData);
+            restaurant.FileName = imgData;
+        }
+    }
 }

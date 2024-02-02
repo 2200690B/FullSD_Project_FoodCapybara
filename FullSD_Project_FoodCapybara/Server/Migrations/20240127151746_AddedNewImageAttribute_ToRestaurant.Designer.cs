@@ -4,6 +4,7 @@ using FullSD_Project_FoodCapybara.Server.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FullSD_Project_FoodCapybara.Server.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240127151746_AddedNewImageAttribute_ToRestaurant.cs")]
+    partial class AddedNewImageAttribute_ToRestaurantcs
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -238,7 +241,7 @@ namespace FullSD_Project_FoodCapybara.Server.Migrations
                         {
                             Id = "3781efa7-66dc-47f0-860f-e506d04102e4",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "69125a53-5f6a-47f6-bcd2-e66aaa58bfd2",
+                            ConcurrencyStamp = "ea6b4015-57d6-4718-be42-4ca6ec9fac86",
                             Email = "admin@localhost.com",
                             EmailConfirmed = false,
                             FirstName = "Admin",
@@ -246,9 +249,9 @@ namespace FullSD_Project_FoodCapybara.Server.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@LOCALHOST.COM",
                             NormalizedUserName = "ADMIN@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEKzdqQPTYRk+2EwHAq7KthQVsKUQw6nh43/riDbPq+3Zu/85e8myUkcI5nJ/zlNJlw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAECOJhbXs5EDwm/OpzLSxOeXonsTyydR+hWfDq9Qxww37T3pjswUHHefd3U4U/jYBNQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "e6eac503-f126-4d4e-94af-8fafffd71535",
+                            SecurityStamp = "ff2c700c-78cb-4172-854a-fb1803d40e7b",
                             TwoFactorEnabled = false,
                             UserName = "admin@localhost.com"
                         },
@@ -256,7 +259,7 @@ namespace FullSD_Project_FoodCapybara.Server.Migrations
                         {
                             Id = "3700efa7-66dc-47f0-860f-e506d04102e4",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "0e1eefc6-006e-4a1c-80c0-e91842178866",
+                            ConcurrencyStamp = "aa3064ab-0c2c-4e4e-ae8f-7821e40d31b6",
                             Email = "staff@localhost.com",
                             EmailConfirmed = false,
                             FirstName = "Staff",
@@ -264,9 +267,9 @@ namespace FullSD_Project_FoodCapybara.Server.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "STAFF@LOCALHOST.COM",
                             NormalizedUserName = "STAFF@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEFiQTHW5kaFUoHMgcax9MvDPWSR50Hkw/pFvjz9E/9WeZh4UmBDO64AlxJox5Kuo0Q==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEOF7yjOlteCz9oeqgGEEJ4JMcrmZ5X9T4eXk+hUehzjBMs+clu40O59XvdUGhjPtaw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "5b81f03b-00ab-40ac-a88d-d4d3b8b5a442",
+                            SecurityStamp = "c43aad59-267b-45da-83e4-092a7a01aabf",
                             TwoFactorEnabled = false,
                             UserName = "staff@localhost.com"
                         });
@@ -284,25 +287,19 @@ namespace FullSD_Project_FoodCapybara.Server.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("CustEmail")
-                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CustPassword")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("CustPayment")
                         .HasColumnType("decimal(18, 2)");
 
-                    b.Property<string>("CustPhone")
-                        .IsRequired()
+                    b.Property<int>("CustPhone")
+                        .HasColumnType("int");
+
+                    b.Property<string>("CustUsername")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
 
                     b.HasKey("Id");
 
@@ -608,28 +605,22 @@ namespace FullSD_Project_FoodCapybara.Server.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
                     b.Property<bool?>("IsAdmin")
                         .HasColumnType("bit");
 
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
                     b.Property<string>("StaffEmail")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("StaffPhone")
-                        .IsRequired()
+                    b.Property<string>("StaffPassword")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("StaffPhone")
+                        .HasColumnType("int");
 
                     b.Property<string>("StaffPosition")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("StaffUsername")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");

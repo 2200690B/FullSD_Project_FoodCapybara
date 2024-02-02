@@ -12,12 +12,18 @@
     <Content Remove="Pages\Customer\IndividualRestaurant.razor" />
     <Content Remove="Pages\Customer\Restaurant.razor" />
     <Content Remove="Pages\Customer\Test.razor" />
+    <Content Remove="Pages\Staff\StaffHome.razor" />
     <Content Remove="wwwroot\icon-192.png" />
     <Content Remove="wwwroot\icon-512.png" />
     <Content Remove="wwwroot\logo.png" />
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="Pages\Staff\Admin\Staff\Create.razor" />
+    <None Include="Pages\Staff\Admin\Staff\Edit.razor" />
+    <None Include="Pages\Staff\Admin\Staff\FormComponent.razor" />
+    <None Include="Pages\Staff\Admin\Staff\Index.razor" />
+    <None Include="Pages\Staff\Admin\Staff\View.razor" />
     <None Include="wwwroot\img\restaurantImages\Rest2.png" />
     <None Include="wwwroot\logo.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -40,7 +46,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Pages\Staff\Admin\Staff\" />
     <Folder Include="Pages\Staff\Admin\Review\" />
     <Folder Include="Pages\Staff\Admin\Payment\" />
     <Folder Include="Pages\Staff\Admin\OrderItem\" />
