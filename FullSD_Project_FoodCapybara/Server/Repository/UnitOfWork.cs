@@ -60,7 +60,7 @@ namespace FullSD_Project_FoodCapybara.Server.Repository
                 .Where(q => q.State == EntityState.Modified ||
                     q.State == EntityState.Added);
 
-            foreach ( var entry in entries )
+            /*foreach ( var entry in entries )
             {
                 ((Order)entry.Entity).OrderDate = DateTime.Now;
                 ((Payment)entry.Entity).PaymentDateTime = DateTime.Now;
@@ -71,7 +71,7 @@ namespace FullSD_Project_FoodCapybara.Server.Repository
                     ((Payment)entry.Entity).PaymentDateTime = DateTime.Now;
                     ((Review)entry.Entity).ReviewDateTime = DateTime.Now;
                 }
-            }
+            }*/
 
             /*foreach (var entry in entries)
             {
