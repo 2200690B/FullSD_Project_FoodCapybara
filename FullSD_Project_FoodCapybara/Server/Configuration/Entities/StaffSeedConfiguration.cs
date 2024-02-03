@@ -13,7 +13,7 @@ namespace FullSD_Project_FoodCapybara.Server.Configuration.Entities
                 {
                     Id = 1,
                     StaffUsername = "Anthony",
-                    StaffPassword = "Adminpassword!",
+                    StaffPassword = "P@ssword!",
                     StaffEmail = "admin@staff.com",
                     StaffPhone = 91000001,
                     StaffPosition = "Admin",
@@ -23,10 +23,10 @@ namespace FullSD_Project_FoodCapybara.Server.Configuration.Entities
                 {
                     Id = 2,
                     StaffUsername = "Dorothy",
-                    StaffPassword = "Driverpassword!",
+                    StaffPassword = "P@ssword!",
                     StaffEmail = "driver@staff.com",
-                    StaffPhone = 91000011,
-                    StaffPosition = "Driver",
+                    StaffPhone = 91000010,
+                    StaffPosition = "Delivery Driver",
                     IsAdmin = false,
                 }
                 );

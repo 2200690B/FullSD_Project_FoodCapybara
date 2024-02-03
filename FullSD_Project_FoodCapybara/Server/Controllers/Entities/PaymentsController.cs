@@ -21,36 +21,24 @@ namespace FullSD_Project_FoodCapybara.Server.Controllers.Entities
         //private readonly ApplicationDbContext_context;
         private readonly IUnitOfWork _unitOfWork;
 
-        //Refactored
-        //public PaymentsController(ApplicationDbContextcontext)
         public PaymentsController(IUnitOfWork unitOfWork)
         {
-            //Refactored
-            //_context = context
             _unitOfWork = unitOfWork;
         }
 
 
         // GET: api/Payments
         [HttpGet]
-        //Refactored
-        //public async Task<ActionResult<IEnumerable<Payment>>>GetPayments()
-        public async Task<IActionResult> GetPayments()
+         public async Task<IActionResult> GetPayments()
         {
-            //Refactored
-            //return await _context.Payments.ToListAsync();
             var payments = await _unitOfWork.Payments.GetAll();
             return Ok(payments);
         }
 
         // GET: api/Payments/5
         [HttpGet("{id}")]
-        //Refactored
-        //public async Task<ActionResult<Payment>>GetPayment(int id)
         public async Task<IActionResult> GetPayment(int id)
         {
-            //Refactored
-            //var payment = await _context.Payments.FindAsync(id);
             var payment = await _unitOfWork.Payments.Get(q => q.Id == id);
 
             if (payment == null)
@@ -58,7 +46,6 @@ namespace FullSD_Project_FoodCapybara.Server.Controllers.Entities
                 return NotFound();
             }
 
-            //Refactored
             return Ok(payment);
         }
 
@@ -72,20 +59,14 @@ namespace FullSD_Project_FoodCapybara.Server.Controllers.Entities
                 return BadRequest();
             }
 
-            //Refactored
-            //_context.Entry(payment).State = EntityState.Modified;
             _unitOfWork.Payments.Update(payment);
 
             try
             {
-                //Refactored
-                //await _context.SaveChangesAsync();
                 await _unitOfWork.Save(HttpContext);
             }
             catch (DbUpdateConcurrencyException)
             {
-                //Refactored
-                //if (!PaymentExists(id))
                 if (!await PaymentExists(id))
                 {
                     return NotFound();
@@ -104,14 +85,10 @@ namespace FullSD_Project_FoodCapybara.Server.Controllers.Entities
         [HttpPost]
         public async Task<ActionResult<Payment>> PostPayment(Payment payment)
         {
-            //Refactored
-            //if (_context.Payments == null)
             if (_unitOfWork.Payments == null)
             {
                 return Problem("Entity set 'ApplicationDbContext.Payments'  is null.");
             }
-            //_context.Payments.Add(payment);
-            //await _context.SaveChangesAsync();
             await _unitOfWork.Payments.Insert(payment);
             await _unitOfWork.Save(HttpContext);
 
@@ -122,36 +99,25 @@ namespace FullSD_Project_FoodCapybara.Server.Controllers.Entities
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeletePayment(int id)
         {
-            //Refactored
-            //if (_context.Payments == null)
             if (_unitOfWork.Payments == null)
             {
                 return NotFound();
             }
 
-            //Refactored
-            //var payment = await _context.Payments.FindAsync(id);
             var payment = await _unitOfWork.Payments.Get(q => q.Id == id);
             if (payment == null)
             {
                 return NotFound();
             }
 
-            //Refactored
-            //_context.Payments.Remove(payment);
-            //await _context.SaveChangesAsync();
             await _unitOfWork.Payments.Delete(id);
             await _unitOfWork.Save(HttpContext);
 
             return NoContent();
         }
 
-        //Refactored
-        //private bool PaymentExists(int id)
         private async Task<bool> PaymentExists(int id)
         {
-            //Refactored
-            //return _context.Payments.Any(e => e.Id == id);
             var payment = await _unitOfWork.Payments.Get(q => q.Id == id);
             return payment != null;
         }

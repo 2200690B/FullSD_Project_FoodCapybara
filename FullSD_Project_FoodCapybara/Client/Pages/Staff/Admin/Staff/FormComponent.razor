@@ -40,7 +40,13 @@
         <div class="form-group">
             <label>Position: </label>
             <div>
-                <InputText @bind-Value="@staff.StaffPosition" class="form-control" />
+                <InputSelect @bind-Value="@staff.StaffPosition" class="form-control">
+                    <option value="">-- Staff Position --</option>
+                    @foreach (var status in StaffPositions)
+                    {
+                        <option value="@status">@status</option>
+                    }
+                </InputSelect>
                 <ValidationMessage For="@(() => staff.StaffPosition)" />
             </div>
         </div>
@@ -64,4 +70,7 @@
     [Parameter] public Staff staff { get; set; }
     [Parameter] public string ButtonText { get; set; } = "Save";
     [Parameter] public EventCallback OnValidSubmit { get; set; }
+
+    private List<string> StaffPositions = new List<string> { "Delivery Driver", "IT & Technical support", "Logistics and Supply Chain Specialists" };
+
 }

@@ -1,7 +1,15 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using FullSD_Project_FoodCapybara.Server.IRepository;
+using FullSD_Project_FoodCapybara.Server.Data;
 using FullSD_Project_FoodCapybara.Shared.Domain;
+using FullSD_Project_FoodCapybara.Server.IRepository;
+
+//used as a base controller to copy and paste the rest of the entityControllers
 
 namespace FullSD_Project_FoodCapybara.Server.Controllers.Entities
 {
@@ -9,11 +17,10 @@ namespace FullSD_Project_FoodCapybara.Server.Controllers.Entities
     [ApiController]
     public class OrdersController : ControllerBase
     {
-        // a service or class reseponsible for managing unit of work pattern
-        //(coordinating the data acces operations across multiple repositories)
+        //Refactored
+        //private readonly ApplicationDbContext_context;
         private readonly IUnitOfWork _unitOfWork;
 
-        //injects an instance of IUnitOfWork
         public OrdersController(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
@@ -51,6 +58,7 @@ namespace FullSD_Project_FoodCapybara.Server.Controllers.Entities
             {
                 return BadRequest();
             }
+
             _unitOfWork.Orders.Update(order);
 
             try
@@ -75,28 +83,16 @@ namespace FullSD_Project_FoodCapybara.Server.Controllers.Entities
         // POST: api/Orders
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        //public async Task<ActionResult<Order>> PostOrder(Order order)
-        public async Task<ActionResult<Order>> PostOrder(List<OrderItem> orderItems)    //takes a list of CartItem objects as the payload in the request body
+        public async Task<ActionResult<Order>> PostOrder(Order order)
         {
-            // Create an order and order items based on the received cartItems
-            var order = new Order
+            if (_unitOfWork.Orders == null)
             {
-                // Set other properties of the order...
-                OrderItems = orderItems.Select(item => new OrderItem
-                {
-                    FoodID = item.FoodID,
-                    OIQuantity = item.OIQuantity
-                }).ToList()
-            };
-
-            if (_unitOfWork.Orders == null) //shopping cart might expect orders to be non-null
-            {   //(Problem)returns an HTTP 500 Internal Server Error status code
                 return Problem("Entity set 'ApplicationDbContext.Orders'  is null.");
             }
-            await _unitOfWork.Orders.Insert(order);     // Inserts the newly created order into the database using the IUnitOfWork interface
-            await _unitOfWork.Save(HttpContext);        // Saves changes to the database
+            await _unitOfWork.Orders.Insert(order);
+            await _unitOfWork.Save(HttpContext);
 
-            return CreatedAtAction("GetOrder", new { id = order.Id }, order);   //CreatedAtAction)Returns a 201 Created status code along with details of the created order
+            return CreatedAtAction("GetOrder", new { id = order.Id }, order);
         }
 
         // DELETE: api/Orders/5

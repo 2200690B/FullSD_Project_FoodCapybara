@@ -29,6 +29,7 @@
     <None Include="wwwroot\logo.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="wwwroot\scripts\datatable.js" />
   </ItemGroup>
 
   <ItemGroup>

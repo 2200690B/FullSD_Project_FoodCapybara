@@ -32,7 +32,13 @@
         <div class="form-group">
             <label>RestCategory: </label>
             <div>
-                <InputText @bind-Value="@restaurant.RestCategory" class="form-control" />
+                <InputSelect @bind-Value="@restaurant.RestCategory" class="form-control">
+                    <option value="">-- Select Category --</option>
+                    @foreach (var status in CategoryOptions)
+                    {
+                        <option value="@status">@status</option>
+                    }
+                </InputSelect>
                 <ValidationMessage For="@(() => restaurant.RestCategory)" />
             </div>
         </div>
@@ -73,7 +79,11 @@
     [Parameter] public Restaurant restaurant { get; set; }
     [Parameter] public string ButtonText { get; set; } = "Save";
     [Parameter] public EventCallback OnValidSubmit { get; set; }
+
+    private List<string> CategoryOptions = new List<string> { "Asian Cuisine", "Bakeries", "Eurpoean Cuisine", "Fast Food", "Smoothie ", "Steakhouses", "Vegetarian and Vegan", "Others" };
+
     List<string> imageUrls = new List<string>();
+    
     IReadOnlyList<IBrowserFile> selectedFiles;
 
     private async Task OnInputFileChange(InputFileChangeEventArgs e)

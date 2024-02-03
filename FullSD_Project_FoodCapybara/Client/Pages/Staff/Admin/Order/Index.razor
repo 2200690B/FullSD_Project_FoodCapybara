@@ -1,7 +1,7 @@
 ﻿@page "/ordersindex/"
 @inject HttpClient _client
 @inject IJSRuntime js
-@attribute [Authorize]
+@attribute [Authorize(Roles = "Administrator")]
 
 <h3 class="card-title">Order</h3>
 

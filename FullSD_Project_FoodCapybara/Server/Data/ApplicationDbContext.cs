@@ -62,7 +62,7 @@ namespace FullSD_Project_FoodCapybara.Server.Data
             
             modelBuilder.Entity<Payment>()
                 .Property(p => p.PaymentTotal)
-                .HasColumnType("decimal(18, 2)"); // Adjust precision and scale as needed
+                .HasColumnType("decimal(18, 2)"); // can adjust precision and scale as needed
             
             modelBuilder.Entity<Order>()
                 .Property(p => p.OrderPrice)
