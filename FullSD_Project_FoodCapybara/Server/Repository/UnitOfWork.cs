@@ -60,6 +60,43 @@ namespace FullSD_Project_FoodCapybara.Server.Repository
                 .Where(q => q.State == EntityState.Modified ||
                     q.State == EntityState.Added);
 
+            /*foreach (var entry in entries)
+            {
+
+                // Specific logic for entities with additional date-related properties
+                if (entry.Entity is Order orderEntity)
+                {
+                    orderEntity.OrderDate = DateTime.Now;
+                }
+                else if (entry.Entity is Payment paymentEntity)
+                {
+                    paymentEntity.PaymentDateTime = DateTime.Now;
+                }
+                else if (entry.Entity is Review reviewEntity)
+                {
+                    reviewEntity.ReviewDateTime = DateTime.Now;
+                }
+            }*/
+
+            //Ems version
+            foreach (var entry in entries)
+            {
+                var entity = entry.Entity;
+
+                // Get all DateTime properties of the entity
+                var dateProperties = entity.GetType().GetProperties()
+                    .Where(p => p.PropertyType == typeof(DateTime));
+
+                foreach (var dateProperty in dateProperties)
+                {
+                    // Set each DateTime property to the current date
+                    dateProperty.SetValue(entity, DateTime.Now);
+                }
+            }
+
+
+
+            //Original version (does not work for other entities
             /*foreach ( var entry in entries )
             {
                 ((Order)entry.Entity).OrderDate = DateTime.Now;
@@ -73,6 +110,7 @@ namespace FullSD_Project_FoodCapybara.Server.Repository
                 }
             }*/
 
+            //Lab version
             /*foreach (var entry in entries)
             {
                 ((BaseDomainModel)entry.Entity).DateUpdated = DateTime.Now;

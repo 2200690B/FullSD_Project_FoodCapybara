@@ -8,7 +8,6 @@ using Microsoft.EntityFrameworkCore;
 using FullSD_Project_FoodCapybara.Server.Data;
 using FullSD_Project_FoodCapybara.Shared.Domain;
 using FullSD_Project_FoodCapybara.Server.IRepository;
-using FullSD_Project_FoodCapybara.Server.Migrations;
 
 //used as a base controller to copy and paste the rest of the entityControllers
 

@@ -24,7 +24,6 @@ namespace FullSD_Project_FoodCapybara.Shared.Domain
         [DataType(DataType.PhoneNumber)]
         [RegularExpression(@"(6|8|9)\d{7}", ErrorMessage = "Phone Number is not a valid phone number")]
         public string? CustPhone { get; set;}
-        public decimal CustPayment { get; set; }
         public virtual List<Order>? CustOrderHistory { get; set; }
     }
 }

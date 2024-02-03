@@ -1,0 +1,102 @@
+﻿@inject HttpClient _client
+
+<EditForm Model="@order" OnValidSubmit="@OnValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <fieldset disabled="@Disabled">
+        <div class="form-group">
+            <label>Customer: </label>
+            <div>
+                <InputSelect @bind-Value="order.CustId" class="form-control">
+                    <option value="">-- Select Customer --</option>
+                    @if (Customers != null)
+                    {
+                        foreach (var customer in Customers)
+                        {
+                            <option value="@customer.Id">@customer.FirstName</option>
+                        }
+                    }
+                </InputSelect>
+                <ValidationMessage For="@(() => order.CustId)" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Staff: </label>
+            <div>
+                <InputSelect @bind-Value="@order.StaffId" class="form-control">
+                    <option value="">-- Select Staff --</option>
+                    @if (Staffs != null)
+                    {
+                        foreach (var staff in Staffs)
+                        {
+                            <option value="@staff.Id">@staff.FirstName</option>
+                        }
+                    }
+                </InputSelect>
+                <ValidationMessage For="@(() => order.StaffId)" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Order Price: </label>
+            <div>
+                <InputNumber @bind-Value="@order.OrderPrice" class="form-control" />
+                <ValidationMessage For="@(() => order.OrderPrice)" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Order Date: </label>
+            <div>
+                <InputDate @bind-Value="@order.OrderDate" class="form-control" />
+                <ValidationMessage For="@(() => order.OrderDate)" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Order Status: </label>
+            <div>
+                <InputSelect @bind-Value="@order.OrderStatus" class="form-control">
+                    <option value="">-- Order Status --</option>
+                    @foreach (var status in OrderStatusOptions)
+                    {
+                        <option value="@status">@status</option>
+                    }
+                </InputSelect>
+                <ValidationMessage For="@(() => order.OrderStatus)" />
+            </div>
+        </div>
+    </fieldset>
+
+    <br />
+
+    @if (!Disabled)
+    {
+        <button type="submit" class="btn btn-success btn-block">
+            @ButtonText
+        </button>
+    }
+    <BackToList Target="ordersindex" />
+    <br />
+
+</EditForm>
+
+@code {
+    [Parameter] public bool Disabled { get; set; } = false;
+    [Parameter] public Order order { get; set; }
+    [Parameter] public string ButtonText { get; set; } = "Save";
+    [Parameter] public EventCallback OnValidSubmit { get; set; }
+
+    private IList<Staff>? Staffs;
+    private IList<Customer>? Customers;
+    private List<string> OrderStatusOptions = new List<string> { "Pending", "Preparing", "Delivering", "Delivered" };
+
+
+    protected async override Task OnInitializedAsync()
+    {
+        Staffs = await _client.GetFromJsonAsync<List<Staff>>($"{Endpoints.StaffsEndpoint}");
+        Customers = await _client.GetFromJsonAsync<List<Customer>>($"{Endpoints.CustomersEndpoint}");
+    }
+}
