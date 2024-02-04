@@ -54,45 +54,54 @@
 
 
         <!-- STAFF -->
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="staffmain">
-                <span class="oi oi-headphones" aria-hidden="true"></span> Staff
-            </NavLink>
-        </div>
+        <AuthorizeView Roles="Staff">
+            <Authorized>
+                <div class="nav-item px-3">
+                    <NavLink class="nav-link" href="staffmain">
+                        <span class="oi oi-headphones" aria-hidden="true"></span> Staff
+                    </NavLink>
+                </div>
 
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="staff">
-                <span class="oi oi-musical-note" aria-hidden="true"></span> Manage Orders
-            </NavLink>
-        </div>
+                <div class="nav-item px-3">
+                    <NavLink class="nav-link" href="staff">
+                        <span class="oi oi-musical-note" aria-hidden="true"></span> Manage Orders
+                    </NavLink>
+                </div>
 
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="driver">
-                <span class="oi oi-heart" aria-hidden="true"></span> Assigned Orders
-            </NavLink>
-        </div>
+                <div class="nav-item px-3">
+                    <NavLink class="nav-link" href="driver">
+                        <span class="oi oi-heart" aria-hidden="true"></span> Assigned Orders
+                    </NavLink>
+                </div>
+            </Authorized>
+        </AuthorizeView>
 
         <!-- ADMIN -->
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="restaurantsindex">
-                <span class="oi oi-cloud" aria-hidden="true"></span> Restaurants Index
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="foodsindex">
-                <span class="oi oi-infinity" aria-hidden="true"></span> Foods Index
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="customersindex">
-                <span class="oi oi-infinity" aria-hidden="true"></span> Customers Index
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="ordersindex">
-                <span class="oi oi-infinity" aria-hidden="true"></span> Orders Index
-            </NavLink>
-        </div>
+        <AuthorizeView Roles="Administrator">
+            <Authorized>
+                <div class="nav-item px-3">
+                    <NavLink class="nav-link" href="restaurantsindex">
+                        <span class="oi oi-cloud" aria-hidden="true"></span> Restaurants Index
+                    </NavLink>
+                </div>
+                <div class="nav-item px-3">
+                    <NavLink class="nav-link" href="foodsindex">
+                        <span class="oi oi-infinity" aria-hidden="true"></span> Foods Index
+                    </NavLink>
+                </div>
+                <div class="nav-item px-3">
+                    <NavLink class="nav-link" href="customersindex">
+                        <span class="oi oi-infinity" aria-hidden="true"></span> Customers Index
+                    </NavLink>
+                </div>
+                <div class="nav-item px-3">
+                    <NavLink class="nav-link" href="ordersindex">
+                        <span class="oi oi-infinity" aria-hidden="true"></span> Orders Index
+                    </NavLink>
+                </div>
+            </Authorized>
+        </AuthorizeView>
+        
         
 
         

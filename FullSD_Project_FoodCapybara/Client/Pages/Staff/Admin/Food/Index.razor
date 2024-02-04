@@ -1,9 +1,9 @@
 ﻿@page "/foodsindex/"
 @inject HttpClient _client
 @inject IJSRuntime js
-@attribute [Authorize]
-@implements IDisposable
-
+@attribute [Authorize(Roles = "Administrator")]
+@* @implements IDisposable
+ *@
 <!--Provides methods for sending Http requests, & recieving HTTP responses from a resource identified by a URI (POSTMAN)    Instance is registered in Program.cs .
 <!-- Pass the IJSRuntime into the singleton service's implementation as an argument of its mothod calls instead of injecting it into the singleton -->
 <!-- foods sure user is logged in before accessing -->
@@ -69,15 +69,15 @@ else
         Foods = await _client.GetFromJsonAsync<List<Food>>($"{Endpoints.FoodsEndpoint}");
     }
 
-    protected async override Task OnAfterRenderAsync(bool firstRender)
-    {
-        await js.InvokeVoidAsync("AddDataTable", "#foodsTable");
-    }
+    // protected async override Task OnAfterRenderAsync(bool firstRender)
+    // {
+    //     await js.InvokeVoidAsync("AddDataTable", "#foodsTable");
+    // }
 
-    public void Dispose()
-    {
-        js.InvokeVoidAsync("DataTablesDispose", "#foodsTable");
-    }
+    // public void Dispose()
+    // {
+    //     js.InvokeVoidAsync("DataTablesDispose", "#foodsTable");
+    // }
 
     async Task Delete(int foodId)
     {

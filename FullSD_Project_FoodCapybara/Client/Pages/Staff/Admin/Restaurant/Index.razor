@@ -1,7 +1,7 @@
 ﻿@page "/restaurantsindex/"
 @inject HttpClient _client 
 @inject IJSRuntime js
-@attribute [Authorize]
+@attribute [Authorize(Roles = "Administrator")]
 
 <!--Provides methods for sending Http requests, & recieving HTTP responses from a resource identified by a URI (POSTMAN)    Instance is registered in Program.cs .
 <!-- Pass the IJSRuntime into the singleton service's implementation as an argument of its mothod calls instead of injecting it into the singleton -->

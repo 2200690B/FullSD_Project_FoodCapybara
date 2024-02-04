@@ -1,7 +1,7 @@
 ﻿@page "/staffmain/"
 @inject HttpClient _client
 @inject IJSRuntime js
-@attribute [Authorize]
+@attribute [Authorize(Roles = "Administrator")]
 
 <h3 class="card-title">Staff</h3>
 
