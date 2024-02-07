@@ -46,14 +46,14 @@
                 <ValidationMessage For="@(() => order.OrderPrice)" />
             </div>
         </div>
-
-        <div class="form-group">
+        <!-- not needed as order is taken as Now -->
+        @* <div class="form-group">
             <label>Order Date: </label>
             <div>
                 <InputDate @bind-Value="@order.OrderDate" class="form-control" />
                 <ValidationMessage For="@(() => order.OrderDate)" />
             </div>
-        </div>
+        </div> *@
 
         <div class="form-group">
             <label>Order Status: </label>

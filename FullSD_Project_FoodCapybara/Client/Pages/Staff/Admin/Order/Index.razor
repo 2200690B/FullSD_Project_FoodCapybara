@@ -39,9 +39,21 @@ else
     <tbody>
         @foreach (var order in Orders)
         {
-            <tr>
-                <td>@order.Customer.FirstName</td>
-                <td>@order.Staff.FirstName</td> 
+                <tr>
+                    @if (order.Customer!=null)
+                    {
+                        @order.Customer.FirstName
+                    } 
+                    else {
+                        <td>Customer Read As Null</td>
+                    }
+                    @if (order.Staff!=null)
+                    {
+                        @order.Staff.FirstName
+                    }
+                    else {
+                        <td>Staff Read As Null</td>
+                    }
                 <td>@order.OrderPrice</td>
                 <td>@order.OrderDate</td>
                 <td>@order.OrderStatus</td>

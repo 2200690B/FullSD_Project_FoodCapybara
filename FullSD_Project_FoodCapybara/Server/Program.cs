@@ -25,9 +25,12 @@ options.SignIn.RequireConfirmedAccount = false)
 
 builder.Services.AddIdentityServer()
     .AddApiAuthorization<ApplicationUser, ApplicationDbContext>(options =>{
+        // Add the "role" claim to the identity token using IdentityServer
         options.IdentityResources["openid"].UserClaims.Add("role");
+        // Add the "role" claim to the API access token using IdentityServer
         options.ApiResources.Single().UserClaims.Add("role");
-    });
+    }); // this adds "role" claim to both the identity token and the API access token
+        // make authorization decisions based on the user's roles.
 
 builder.Services.AddAuthentication()
     .AddIdentityServerJwt();
